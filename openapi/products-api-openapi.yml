@@ -4,7 +4,7 @@ info:
   title: Products API
   description: |
     This is a template APIs.json for a products API, to be used in storytelling, training, and knowledge bases.
-  
+
   version: 0.1.0
 
   contact:
@@ -14,7 +14,7 @@ info:
 
   termsOfService: http://example.com/terms/
 
-  license: 
+  license:
     name: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
     identifier: CC-BY-NC-SA-4.0
     url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
@@ -30,7 +30,7 @@ servers:
 tags:
 
   - name: Products
-    description: | 
+    description: |
       Placing and managing of products placed for products.
 
 paths:
@@ -62,7 +62,7 @@ paths:
                 $ref: '#/components/schemas/WrapperResponseCollection'
               examples:
                 ProductCollection:
-                  $ref: '#/components/examples/ProductCollection'                 
+                  $ref: '#/components/examples/ProductCollection'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -75,7 +75,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
     post:
       operationId: createProduct
-      summary: Create Product
+      summary: Products Create Product
       description: Creating a new product for sending to a recipient.
       tags:
         - Products
@@ -89,13 +89,13 @@ paths:
               $ref: '#/components/schemas/Product'
             examples:
               Product:
-                $ref: '#/components/examples/Product'                           
+                $ref: '#/components/examples/Product'
           application/xml:
             schema:
               $ref: '#/components/schemas/Product'
             examples:
               Product:
-                $ref: '#/components/examples/Product'            
+                $ref: '#/components/examples/Product'
       responses:
         '201':
           description: Product Successful
@@ -105,19 +105,19 @@ paths:
                 $ref: '#/components/schemas/WrapperResponseObject'
               examples:
                 SingleProduct:
-                  $ref: '#/components/examples/SingleProduct'                    
+                  $ref: '#/components/examples/SingleProduct'
             application/xml:
               schema:
                 $ref: '#/components/schemas/WrapperResponseObject'
               examples:
                 SingleProduct:
-                  $ref: '#/components/examples/SingleProduct'        
+                  $ref: '#/components/examples/SingleProduct'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
         '403':
-          $ref: '#/components/responses/Forbidden'          
+          $ref: '#/components/responses/Forbidden'
         '404':
           $ref: '#/components/responses/NotFound'
         '409':
@@ -126,18 +126,17 @@ paths:
           $ref: '#/components/responses/TooManyRequests'
         '500':
           $ref: '#/components/responses/InternalServerError'
-  
   /products/{productId}:
     parameters:
       - $ref: '#/components/parameters/ProductId'
     get:
-      summary: Retrieve Product
+      summary: Products Retrieve Product
       description: Returns the details of a specific product.
       operationId: getProduct
       tags:
         - Products
       security:
-        - apiKeys: []        
+        - apiKeys: []
       responses:
         '200':
           description: Product Details
@@ -171,7 +170,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 
     put:
-      summary: Update Product
+      summary: Products Update Product
       description: Updates a single product.
       operationId: updateProduct
       requestBody:
@@ -182,13 +181,13 @@ paths:
               $ref: '#/components/schemas/Product'
             examples:
               Product:
-                $ref: '#/components/examples/Product'                   
+                $ref: '#/components/examples/Product'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Product'  
+              $ref: '#/components/schemas/Product'
             examples:
               Product:
-                $ref: '#/components/examples/Product'                       
+                $ref: '#/components/examples/Product'
       security:
         - apiKeys: []
       tags:
@@ -210,7 +209,7 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 
     delete:
-      summary: Delete Product
+      summary: Products Delete Product
       description: Deletes a product.
       operationId: deleteProduct
       security:
@@ -239,9 +238,9 @@ paths:
       - $ref: '#/components/parameters/ProductId'
 
     put:
-      summary: Cancel Product
+      summary: Products Cancel Product
       description: Cancels a single product.
-      operationId: sendProduct    
+      operationId: sendProduct
       requestBody:
         required: true
         content:
@@ -250,13 +249,13 @@ paths:
               $ref: '#/components/schemas/Product'
             examples:
               Product:
-                $ref: '#/components/examples/Product'                   
+                $ref: '#/components/examples/Product'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Product'  
+              $ref: '#/components/schemas/Product'
             examples:
               Product:
-                $ref: '#/components/examples/Product'        
+                $ref: '#/components/examples/Product'
       security:
         - apiKeys: []
       tags:
@@ -275,7 +274,7 @@ paths:
         '429':
           $ref: '#/components/responses/TooManyRequests'
         '500':
-          $ref: '#/components/responses/InternalServerError'          
+          $ref: '#/components/responses/InternalServerError'
 
 components:
 
@@ -287,7 +286,7 @@ components:
           page: 1
           pageSize: 10
           totalPages: 2
-        data:                    
+        data:
           - id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
             sender: Jane Doe
             recipient: John Doe
@@ -297,7 +296,7 @@ components:
             dateReceived: '2018-04-25T18:00:30+01:00'
         links:
           self: https://api.example.com/products
-          next: https://api.example.com/products?page=2  
+          next: https://api.example.com/products?page=2
 
     SingleProduct:
       value:
@@ -305,7 +304,7 @@ components:
           page: 1
           pageSize: 10
           totalPages: 2
-        data:                    
+        data:
           id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
           sender: Jane Doe
           recipient: John Doe
@@ -314,14 +313,14 @@ components:
           dateSent: '2018-04-25T18:00:30+01:00'
           dateReceived: '2018-04-25T18:00:30+01:00'
         links:
-          self: https://api.example.com/products      
+          self: https://api.example.com/products
 
     Product:
-      value:              
+      value:
         sender: Jane Doe
         recipient: John Doe
         subjectOf: Meeting Later
-        text: Please meet me at the market.                 
+        text: Please meet me at the market.
 
   securitySchemes:
     apiKeys:
@@ -331,18 +330,18 @@ components:
 
   parameters:
 
-    ProductId: 
-        name: productId
-        in: path
-        required: true
-        description: The ID of the product to retrieve.
-        schema:
-          type: string
-          format: uuid
-          minLength: 36
-          maxLength: 36     
-          pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$     
-        example: 1725ff48-ab45-4bb5-9d02-88745177dedb             
+    ProductId:
+      name: productId
+      in: path
+      required: true
+      description: The ID of the product to retrieve.
+      schema:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      example: 1725ff48-ab45-4bb5-9d02-88745177dedb
 
   schemas:
 
@@ -355,14 +354,14 @@ components:
         - links
       properties:
         meta:
-          $ref: '#/components/schemas/Meta'             
+          $ref: '#/components/schemas/Meta'
         data:
           description: The wrapper for a collection is an array of objects.
           type: array
           maxItems: 100
           minItems: 1
           items:
-            $ref: '#/components/schemas/Product'            
+            $ref: '#/components/schemas/Product'
         links:
           $ref: '#/components/schemas/LinksPagination'
       xml:
@@ -374,16 +373,16 @@ components:
       required:
         - meta
         - data
-        - links      
+        - links
       properties:
         meta:
-          $ref: '#/components/schemas/Meta'        
+          $ref: '#/components/schemas/Meta'
         data:
-          $ref: '#/components/schemas/Product'                   
+          $ref: '#/components/schemas/Product'
         links:
-          $ref: '#/components/schemas/LinksSelf'                   
+          $ref: '#/components/schemas/LinksSelf'
       xml:
-        name: data    
+        name: data
 
     LinksSelf:
       type: object
@@ -396,7 +395,7 @@ components:
           description: A URL to product returned.
           format: uri
           minLength: 10
-          maxLength: 2048   
+          maxLength: 2048
 
     Meta:
       type: object
@@ -409,18 +408,18 @@ components:
           type: integer
           description: The page represented in response.
           minLength: 1
-          maxLength: 1000    
+          maxLength: 1000
         pageSize:
           type: integer
           minLength: 1
-          maxLength: 1000  
+          maxLength: 1000
           description: The overall page size limits.
         totalPages:
           type: integer
           description: The total number of pages.
           minLength: 1
-          maxLength: 1000                                
-                  
+          maxLength: 1000
+
     LinksPagination:
       type: object
       description: The handling of each page.
@@ -430,13 +429,13 @@ components:
           description: The next page in results.
           format: uri
           minLength: 10
-          maxLength: 2048            
+          maxLength: 2048
         prev:
           type: string
           description: The previous page in results.
           format: uri
           minLength: 10
-          maxLength: 2048           
+          maxLength: 2048
 
     Product:
       type: object
@@ -455,7 +454,7 @@ components:
           minLength: 36
           maxLength: 36
           pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-          example: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e      
+          example: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
         name:
           type: integer
           description: Name of the product.
@@ -466,14 +465,14 @@ components:
           type: string
           description: The description of the product.
           minLength: 10
-          maxLength: 2500          
+          maxLength: 2500
           example: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         image:
           type: string
           description: An image for the organization.
           minLength: 10
-          maxLength: 2048          
-          example: 'http://example.com/image.jpg'                             
+          maxLength: 2048
+          example: 'http://example.com/image.jpg'
 
     Problem:
       type: object
@@ -490,31 +489,31 @@ components:
           description: A URI reference that identifies the problem type
           example: https://example.com/probs/out-of-credit
           minLength: 10
-          maxLength: 2048            
+          maxLength: 2048
         title:
           type: string
           description: A short, human-readable summary of the problem type
           example: You do not have enough credit.
           minLength: 10
-          maxLength: 250            
+          maxLength: 250
         detail:
           type: string
           description: A human-readable explanation specific to this occurrence of the problem
           example: Your current balance is 30, but that costs 50.
           minLength: 10
-          maxLength: 1000            
+          maxLength: 1000
         instance:
           type: string
           description: A URI reference that identifies the specific occurrence of the problem
           example: /account/12345/msgs/abc
           minLength: 10
-          maxLength: 250            
+          maxLength: 250
         status:
           type: integer
           description: The HTTP status code
-          example: 400        
+          example: 400
           minLength: 3
-          maxLength: 3                 
+          maxLength: 3
 
   headers:
 
@@ -526,11 +525,11 @@ components:
       schema:
         type: string
         minLength: 10
-        maxLength: 250  
+        maxLength: 250
         example: limit=10, remaining=0, reset=10
 
     Retry-After:
-      description: | 
+      description: |
         The Retry-After header indicates how long the user agent should wait before making a follow-up request. 
         The value is in seconds and can be an integer or a date in the future. 
         If the value is an integer, it indicates the number of seconds to wait. 
@@ -538,7 +537,7 @@ components:
       schema:
         type: string
         minLength: 10
-        maxLength: 250          
+        maxLength: 250
       examples:
         integer:
           value: '120'
