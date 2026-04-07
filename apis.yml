@@ -1,4 +1,3 @@
----
 aid: api-evangelist-products
 name: Products
 type: Template
@@ -7,10 +6,8 @@ description: |-
 
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Application Programming Interface
-- API
-- Products
-
+  - Application Programming Interface
+  - Products
 created: '2024-12-29'
 modified: '2024-12-29'
 
@@ -25,7 +22,6 @@ apis:
     humanURL: https://example.com/apis.yml
     baseURL: http://apis.example.com
     tags:
-      - API
       - Application Programming Interface
       - Products
     properties:
@@ -38,7 +34,7 @@ apis:
       - type: GettingStarted
         url: http://example.com/getting-started
       - type: ChangeLog
-        url: http://example.com/change-log 
+        url: http://example.com/change-log
     contact:
       - FN: API Evangelist
         email: info@apievangelist.com
