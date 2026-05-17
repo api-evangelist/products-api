@@ -1,6 +1,6 @@
 aid: api-evangelist-products
 name: Products
-type: Template
+kind: template
 description: |-
   This is a template APIs.json for a products API, to be used in storytelling, training, and knowledge bases.
 
