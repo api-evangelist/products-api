@@ -2,7 +2,7 @@ aid: api-evangelist-products
 name: Products
 kind: template
 description: This is a template APIs.json for a products API, to be used in storytelling, training, and knowledge bases.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Application Programming Interface
   - Products
@@ -14,7 +14,7 @@ apis:
   - aid: api-evangelist-products:products-api
     name: Products API.
     description: A demo products API.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://example.com/apis.yml
     baseURL: http://apis.example.com
     tags:
