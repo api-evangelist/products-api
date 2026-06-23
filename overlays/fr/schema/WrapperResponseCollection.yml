@@ -1,0 +1,13 @@
+overlay: 1.0.0
+info:
+  title: WrapperResponseCollection JSON Schema French Overlay
+  version: 1.0.0
+  description: French localization overlay for the standalone WrapperResponseCollection
+    JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/WrapperResponseCollection.yml
+actions:
+- target: $.description
+  update: Il s’agit d’une enveloppe générique de requête/réponse qui contient à la
+    fois des données et des liens servant de contrôles hypermédia (HATEOAS).
+- target: $.properties.data.description
+  update: L’enveloppe d’une collection est un tableau d’objets.

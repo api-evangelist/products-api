@@ -1,0 +1,14 @@
+overlay: 1.0.0
+info:
+  title: LinksPagination JSON Schema German Overlay
+  version: 1.0.0
+  description: German localization overlay for the standalone LinksPagination JSON
+    Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/LinksPagination.yml
+actions:
+- target: $.description
+  update: Die Verarbeitung jeder Seite.
+- target: $.properties.next.description
+  update: Die nächste Seite in den Ergebnissen.
+- target: $.properties.prev.description
+  update: Die vorherige Seite in den Ergebnissen.

@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: Product JSON Schema Italian Overlay
+  version: 1.0.0
+  description: Italian localization overlay for the standalone Product JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/Product.yml
+actions:
+- target: $.description
+  update: Un oggetto prodotto conforme a Schema.org.
+- target: $.properties.identifier.description
+  update: Identificatore univoco del prodotto.
+- target: $.properties.name.description
+  update: Nome del prodotto.
+- target: $.properties.descripton.description
+  update: La descrizione del prodotto.
+- target: $.properties.image.description
+  update: Un’immagine per l’organizzazione.

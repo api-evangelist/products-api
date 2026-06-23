@@ -1,0 +1,44 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://api.example.com/schemas/Problem.yml
+title: Problem
+type: object
+description: This is a Problem Details for HTTP APIs object.
+required:
+- title
+- status
+properties:
+  type:
+    type: string
+    description: A URI reference that identifies the problem type
+    examples:
+    - https://example.com/probs/out-of-credit
+    minLength: 10
+    maxLength: 2048
+  title:
+    type: string
+    description: A short, human-readable summary of the problem type
+    examples:
+    - You do not have enough credit.
+    minLength: 10
+    maxLength: 250
+  detail:
+    type: string
+    description: A human-readable explanation specific to this occurrence of the problem
+    examples:
+    - Your current balance is 30, but that costs 50.
+    minLength: 10
+    maxLength: 1000
+  instance:
+    type: string
+    description: A URI reference that identifies the specific occurrence of the problem
+    examples:
+    - /account/12345/msgs/abc
+    minLength: 10
+    maxLength: 250
+  status:
+    type: integer
+    description: The HTTP status code
+    examples:
+    - 400
+    minLength: 3
+    maxLength: 3

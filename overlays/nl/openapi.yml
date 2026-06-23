@@ -1,0 +1,381 @@
+overlay: 1.1.0
+info:
+  title: Nederlandse overlay voor Products API
+  version: 0.1.0
+  description: >-
+    Nederlandse OpenAPI Overlay voor de API Evangelist Products API. Deze overlay
+    vertaalt mensgerichte documentatievelden, voorbeelden en foutmeldingen zonder
+    de oorspronkelijke OpenAPI-beschrijving aan te passen.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/openapi/products-api-openapi.yml
+actions:
+  - target: $.info
+    description: Vertaal de algemene API-metadata.
+    update:
+      title: Producten API
+      description: >-
+        Dit is een template-API voor een producten-API, bedoeld voor gebruik in
+        storytelling, trainingen en kennisbanken.
+      termsOfService: http://example.com/terms/
+
+  - target: $.externalDocs
+    description: Vertaal de externe documentatieverwijzing.
+    update:
+      description: Landingspagina van de Producten API
+
+  - target: $.servers[0]
+    description: Vertaal de productie-serveromschrijving.
+    update:
+      description: Productie
+
+  - target: $.tags[?(@.name == 'Products')]
+    description: Vertaal de tagbeschrijving.
+    update:
+      description: Producten plaatsen en beheren.
+
+  - target: $.paths['/products'].get
+    description: Vertaal de lijstbewerking voor producten.
+    update:
+      summary: Producten ophalen
+      description: Retourneert een lijst met alle producten voor de geauthenticeerde gebruiker.
+
+  - target: $.paths['/products'].get.responses['200']
+    description: Vertaal de succesvolle lijstrespons.
+    update:
+      description: Een lijst met producten
+
+  - target: $.paths['/products'].post
+    description: Vertaal de aanmaakbewerking voor producten.
+    update:
+      summary: Product aanmaken
+      description: Maakt een nieuw product aan.
+
+  - target: $.paths['/products'].post.responses['201']
+    description: Vertaal de succesvolle aanmaakrespons.
+    update:
+      description: Product succesvol aangemaakt
+
+  - target: $.paths['/products/{productId}'].get
+    description: Vertaal het ophalen van één product.
+    update:
+      summary: Product ophalen
+      description: Retourneert de details van een specifiek product.
+
+  - target: $.paths['/products/{productId}'].get.responses['200']
+    description: Vertaal de succesvolle detailrespons.
+    update:
+      description: Productdetails
+
+  - target: $.paths['/products/{productId}'].put
+    description: Vertaal het bijwerken van één product.
+    update:
+      summary: Product bijwerken
+      description: Werkt één product bij.
+
+  - target: $.paths['/products/{productId}'].put.responses['204']
+    description: Vertaal de succesvolle bijwerkrespons.
+    update:
+      description: Product bijgewerkt
+
+  - target: $.paths['/products/{productId}'].delete
+    description: Vertaal het verwijderen van één product.
+    update:
+      summary: Product verwijderen
+      description: Verwijdert een product.
+
+  - target: $.paths['/products/{productId}'].delete.responses['204']
+    description: Vertaal de succesvolle verwijderrespons.
+    update:
+      description: Product verwijderd
+
+  - target: $.paths['/products/{productId}/cancle'].put
+    description: >-
+      Vertaal de annuleerbewerking. De oorspronkelijke padnaam bevat 'cancle';
+      deze overlay wijzigt alleen de documentatie, niet het pad.
+    update:
+      summary: Product annuleren
+      description: Annuleert één product.
+
+  - target: $.paths['/products/{productId}/cancle'].put.responses['204']
+    description: Vertaal de succesvolle annuleerrespons.
+    update:
+      description: Product geannuleerd
+
+  - target: $.components.parameters.ProductId
+    description: Vertaal de product-id parameter.
+    update:
+      description: De id van het product dat moet worden opgehaald.
+
+  - target: $.components.schemas.WrapperResponseCollection
+    description: Vertaal de wrapper voor collectieresponsen.
+    update:
+      description: >-
+        Een generieke request/response-wrapper die zowel data als links bevat.
+        De links dienen als hypermediacontroles (HATEOAS).
+
+  - target: $.components.schemas.WrapperResponseCollection.properties.data
+    description: Vertaal de dataomschrijving voor collecties.
+    update:
+      description: De wrapper voor een collectie is een array met objecten.
+
+  - target: $.components.schemas.WrapperResponseObject
+    description: Vertaal de wrapper voor objectresponsen.
+    update:
+      description: >-
+        Een generieke request/response-wrapper die zowel data als links bevat.
+        De links dienen als hypermediacontroles (HATEOAS).
+
+  - target: $.components.schemas.LinksSelf
+    description: Vertaal de self-link schemaomschrijving.
+    update:
+      description: Een link om naar elk product te verwijzen.
+
+  - target: $.components.schemas.LinksSelf.properties.self
+    description: Vertaal de self-link eigenschap.
+    update:
+      description: Een URL naar het geretourneerde product.
+
+  - target: $.components.schemas.Meta
+    description: Vertaal metadataomschrijving.
+    update:
+      description: De metadata voor elke respons.
+
+  - target: $.components.schemas.Meta.properties.page
+    description: Vertaal pagina-eigenschap.
+    update:
+      description: De pagina die in de respons wordt weergegeven.
+
+  - target: $.components.schemas.Meta.properties.pageSize
+    description: Vertaal paginagrootte-eigenschap.
+    update:
+      description: De algemene limieten voor de paginagrootte.
+
+  - target: $.components.schemas.Meta.properties.totalPages
+    description: Vertaal totaal-aantal-pagina's eigenschap.
+    update:
+      description: Het totale aantal pagina's.
+
+  - target: $.components.schemas.LinksPagination
+    description: Vertaal pagineringlinks.
+    update:
+      description: De afhandeling van elke pagina.
+
+  - target: $.components.schemas.LinksPagination.properties.next
+    description: Vertaal volgende-pagina link.
+    update:
+      description: De volgende pagina met resultaten.
+
+  - target: $.components.schemas.LinksPagination.properties.prev
+    description: Vertaal vorige-pagina link.
+    update:
+      description: De vorige pagina met resultaten.
+
+  - target: $.components.schemas.Product
+    description: Vertaal productschema.
+    update:
+      description: Een Schema.org-conform productobject.
+
+  - target: $.components.schemas.Product.properties.identifier
+    description: Vertaal productidentificatie.
+    update:
+      description: Unieke identificatie voor het product.
+
+  - target: $.components.schemas.Product.properties.name
+    description: Vertaal productnaam.
+    update:
+      description: Naam van het product.
+      example: Voorbeeldproduct
+
+  - target: $.components.schemas.Product.properties.descripton
+    description: >-
+      Vertaal de productomschrijving. De oorspronkelijke eigenschapsnaam bevat
+      'descripton'; deze overlay wijzigt alleen de beschrijving en het voorbeeld.
+    update:
+      description: De omschrijving van het product.
+      example: >-
+        Een duidelijke omschrijving van het product, inclusief belangrijke
+        kenmerken, gebruiksscenario's en relevante details voor de gebruiker.
+
+  - target: $.components.schemas.Product.properties.image
+    description: Vertaal productafbeelding.
+    update:
+      description: Een afbeelding van het product.
+
+  - target: $.components.schemas.Problem
+    description: Vertaal Problem Details schema.
+    update:
+      description: Een Problem Details-object voor HTTP API's.
+
+  - target: $.components.schemas.Problem.properties.type
+    description: Vertaal probleemtype.
+    update:
+      description: Een URI-referentie die het type probleem identificeert.
+
+  - target: $.components.schemas.Problem.properties.title
+    description: Vertaal probleemtitel.
+    update:
+      description: Een korte, voor mensen leesbare samenvatting van het probleemtype.
+      example: U heeft onvoldoende tegoed.
+
+  - target: $.components.schemas.Problem.properties.detail
+    description: Vertaal probleemdetaillering.
+    update:
+      description: Een voor mensen leesbare uitleg die specifiek is voor deze gebeurtenis.
+      example: Uw huidige saldo is 30, maar daarvoor is 50 nodig.
+
+  - target: $.components.schemas.Problem.properties.instance
+    description: Vertaal probleeminstantie.
+    update:
+      description: Een URI-referentie die de specifieke gebeurtenis van het probleem identificeert.
+
+  - target: $.components.schemas.Problem.properties.status
+    description: Vertaal HTTP-statuscode.
+    update:
+      description: De HTTP-statuscode.
+
+  - target: $.components.headers.RateLimit
+    description: Vertaal de RateLimit-header.
+    update:
+      description: >-
+        De RateLimit-header communiceert quotabeleid. De waarde bevat een
+        `limit` voor de aflopende limiet, `remaining` voor het resterende quota
+        en `reset` voor het moment waarop het tijdvenster wordt gereset.
+
+  - target: $.components.headers.Retry-After
+    description: Vertaal de Retry-After-header.
+    update:
+      description: >-
+        De Retry-After-header geeft aan hoelang de user agent moet wachten
+        voordat een vervolgverzoek wordt gedaan. De waarde is in seconden en kan
+        een geheel getal zijn of een datum in de toekomst. Als de waarde een
+        geheel getal is, geeft deze het aantal seconden wachttijd aan. Als de
+        waarde een datum is, geeft deze het moment aan waarop de user agent een
+        vervolgverzoek mag doen.
+
+  - target: $.components.headers.Retry-After.examples.integer
+    description: Vertaal het integer-voorbeeld van Retry-After.
+    update:
+      summary: Opnieuw proberen na 120 seconden
+
+  - target: $.components.headers.Retry-After.examples.date
+    description: Vertaal het datumvoorbeeld van Retry-After.
+    update:
+      summary: Opnieuw proberen na de opgegeven datum
+
+  - target: $.components.responses.BadRequest
+    description: Vertaal Bad Request respons.
+    update:
+      description: Ongeldig verzoek
+
+  - target: $.components.responses.BadRequest.content['application/problem+json'].example
+    description: Vertaal Bad Request JSON voorbeeld.
+    update:
+      title: Ongeldig verzoek
+      detail: Het verzoek is ongeldig of mist verplichte parameters.
+
+  - target: $.components.responses.BadRequest.content['application/problem+xml'].example
+    description: Vertaal Bad Request XML voorbeeld.
+    update:
+      title: Ongeldig verzoek
+      detail: Het verzoek is ongeldig of mist verplichte parameters.
+
+  - target: $.components.responses.Conflict
+    description: Vertaal Conflict respons.
+    update:
+      description: Conflict
+
+  - target: $.components.responses.Conflict.content['application/problem+json'].example
+    description: Vertaal Conflict JSON voorbeeld.
+    update:
+      title: Conflict
+      detail: Er is een conflict met een bestaande resource.
+
+  - target: $.components.responses.Conflict.content['application/problem+xml'].example
+    description: Vertaal Conflict XML voorbeeld.
+    update:
+      title: Conflict
+      detail: Er is een conflict met een bestaande resource.
+
+  - target: $.components.responses.Forbidden
+    description: Vertaal Forbidden respons.
+    update:
+      description: Verboden
+
+  - target: $.components.responses.Forbidden.content['application/problem+json'].example
+    description: Vertaal Forbidden JSON voorbeeld.
+    update:
+      title: Verboden
+      detail: Toegang is verboden met de opgegeven referenties.
+
+  - target: $.components.responses.Forbidden.content['application/problem+xml'].example
+    description: Vertaal Forbidden XML voorbeeld.
+    update:
+      title: Verboden
+      detail: Toegang is verboden met de opgegeven referenties.
+
+  - target: $.components.responses.InternalServerError
+    description: Vertaal Internal Server Error respons.
+    update:
+      description: Interne serverfout
+
+  - target: $.components.responses.InternalServerError.content['application/problem+json'].example
+    description: Vertaal Internal Server Error JSON voorbeeld.
+    update:
+      title: Interne serverfout
+      detail: Er is een onverwachte fout opgetreden.
+
+  - target: $.components.responses.InternalServerError.content['application/problem+xml'].example
+    description: Vertaal Internal Server Error XML voorbeeld.
+    update:
+      title: Interne serverfout
+      detail: Er is een onverwachte fout opgetreden.
+
+  - target: $.components.responses.NotFound
+    description: Vertaal Not Found respons.
+    update:
+      description: Niet gevonden
+
+  - target: $.components.responses.NotFound.content['application/problem+json'].example
+    description: Vertaal Not Found JSON voorbeeld.
+    update:
+      title: Niet gevonden
+      detail: De gevraagde resource is niet gevonden.
+
+  - target: $.components.responses.NotFound.content['application/problem+xml'].example
+    description: Vertaal Not Found XML voorbeeld.
+    update:
+      title: Niet gevonden
+      detail: De gevraagde resource is niet gevonden.
+
+  - target: $.components.responses.TooManyRequests
+    description: Vertaal Too Many Requests respons.
+    update:
+      description: Te veel verzoeken
+
+  - target: $.components.responses.TooManyRequests.content['application/problem+json'].example
+    description: Vertaal Too Many Requests JSON voorbeeld.
+    update:
+      title: Te veel verzoeken
+      detail: U heeft de snelheidslimiet overschreden.
+
+  - target: $.components.responses.TooManyRequests.content['application/problem+xml'].example
+    description: Vertaal Too Many Requests XML voorbeeld.
+    update:
+      title: Te veel verzoeken
+      detail: U heeft de snelheidslimiet overschreden.
+
+  - target: $.components.responses.Unauthorized
+    description: Vertaal Unauthorized respons.
+    update:
+      description: Niet geautoriseerd
+
+  - target: $.components.responses.Unauthorized.content['application/problem+json'].example
+    description: Vertaal Unauthorized JSON voorbeeld.
+    update:
+      title: Niet geautoriseerd
+      detail: U heeft niet de benodigde machtigingen.
+
+  - target: $.components.responses.Unauthorized.content['application/problem+xml'].example
+    description: Vertaal Unauthorized XML voorbeeld.
+    update:
+      title: Niet geautoriseerd
+      detail: U heeft niet de benodigde machtigingen.

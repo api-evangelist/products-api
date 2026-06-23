@@ -1,0 +1,15 @@
+overlay: 1.0.0
+info:
+  title: Meta JSON Schema German Overlay
+  version: 1.0.0
+  description: German localization overlay for the standalone Meta JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/Meta.yml
+actions:
+- target: $.description
+  update: Die Metadaten für jede Antwort.
+- target: $.properties.page.description
+  update: Die in der Antwort dargestellte Seite.
+- target: $.properties.pageSize.description
+  update: Die allgemeinen Grenzwerte für die Seitengröße.
+- target: $.properties.totalPages.description
+  update: Die Gesamtzahl der Seiten.

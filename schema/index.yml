@@ -1,0 +1,17 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://api.example.com/schemas/index.yml
+$defs:
+  WrapperResponseCollection:
+    $ref: WrapperResponseCollection.yml
+  WrapperResponseObject:
+    $ref: WrapperResponseObject.yml
+  LinksSelf:
+    $ref: LinksSelf.yml
+  Meta:
+    $ref: Meta.yml
+  LinksPagination:
+    $ref: LinksPagination.yml
+  Product:
+    $ref: Product.yml
+  Problem:
+    $ref: Problem.yml

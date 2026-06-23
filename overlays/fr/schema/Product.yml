@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: Product JSON Schema French Overlay
+  version: 1.0.0
+  description: French localization overlay for the standalone Product JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/Product.yml
+actions:
+- target: $.description
+  update: Un objet produit conforme à Schema.org.
+- target: $.properties.identifier.description
+  update: Identifiant unique du produit.
+- target: $.properties.name.description
+  update: Nom du produit.
+- target: $.properties.descripton.description
+  update: La description du produit.
+- target: $.properties.image.description
+  update: Une image pour l’organisation.

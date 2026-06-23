@@ -1,0 +1,382 @@
+overlay: 1.1.0
+info:
+  title: Overlay français pour Products API
+  version: 0.1.0
+  description: >-
+    Overlay OpenAPI français pour l'API Products d'API Evangelist. Cet overlay
+    traduit les champs de documentation destinés aux humains, les exemples et
+    les messages d'erreur sans modifier la description OpenAPI d'origine.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/openapi/products-api-openapi.yml
+actions:
+  - target: $.info
+    description: Traduire les métadonnées générales de l'API.
+    update:
+      title: API Produits
+      description: >-
+        Ceci est un modèle d'API pour une API de produits, destiné à être utilisé
+        dans la narration, les formations et les bases de connaissances.
+      termsOfService: http://example.com/terms/
+
+  - target: $.externalDocs
+    description: Traduire la référence à la documentation externe.
+    update:
+      description: Page d'accueil de l'API Produits
+
+  - target: $.servers[0]
+    description: Traduire la description du serveur de production.
+    update:
+      description: Production
+
+  - target: $.tags[?(@.name == 'Products')]
+    description: Traduire la description du tag.
+    update:
+      description: Publier et gérer des produits.
+
+  - target: $.paths['/products'].get
+    description: Traduire l'opération de liste des produits.
+    update:
+      summary: Récupérer les produits
+      description: Retourne la liste de tous les produits pour l'utilisateur authentifié.
+
+  - target: $.paths['/products'].get.responses['200']
+    description: Traduire la réponse de liste réussie.
+    update:
+      description: Une liste de produits
+
+  - target: $.paths['/products'].post
+    description: Traduire l'opération de création de produit.
+    update:
+      summary: Créer un produit
+      description: Crée un nouveau produit.
+
+  - target: $.paths['/products'].post.responses['201']
+    description: Traduire la réponse de création réussie.
+    update:
+      description: Produit créé avec succès
+
+  - target: $.paths['/products/{productId}'].get
+    description: Traduire la récupération d'un produit.
+    update:
+      summary: Récupérer un produit
+      description: Retourne les détails d'un produit spécifique.
+
+  - target: $.paths['/products/{productId}'].get.responses['200']
+    description: Traduire la réponse de détail réussie.
+    update:
+      description: Détails du produit
+
+  - target: $.paths['/products/{productId}'].put
+    description: Traduire la mise à jour d'un produit.
+    update:
+      summary: Mettre à jour un produit
+      description: Met à jour un produit.
+
+  - target: $.paths['/products/{productId}'].put.responses['204']
+    description: Traduire la réponse de mise à jour réussie.
+    update:
+      description: Produit mis à jour
+
+  - target: $.paths['/products/{productId}'].delete
+    description: Traduire la suppression d'un produit.
+    update:
+      summary: Supprimer un produit
+      description: Supprime un produit.
+
+  - target: $.paths['/products/{productId}'].delete.responses['204']
+    description: Traduire la réponse de suppression réussie.
+    update:
+      description: Produit supprimé
+
+  - target: $.paths['/products/{productId}/cancle'].put
+    description: >-
+      Traduire l'opération d'annulation. Le nom de chemin d'origine contient
+      'cancle'; cet overlay modifie uniquement la documentation, pas le chemin.
+    update:
+      summary: Annuler un produit
+      description: Annule un produit.
+
+  - target: $.paths['/products/{productId}/cancle'].put.responses['204']
+    description: Traduire la réponse d'annulation réussie.
+    update:
+      description: Produit annulé
+
+  - target: $.components.parameters.ProductId
+    description: Traduire le paramètre d'identifiant de produit.
+    update:
+      description: L'identifiant du produit à récupérer.
+
+  - target: $.components.schemas.WrapperResponseCollection
+    description: Traduire l'enveloppe des réponses de collection.
+    update:
+      description: >-
+        Une enveloppe générique de requête/réponse contenant à la fois des
+        données et des liens. Les liens servent de contrôles hypermédia (HATEOAS).
+
+  - target: $.components.schemas.WrapperResponseCollection.properties.data
+    description: Traduire la description des données pour les collections.
+    update:
+      description: L'enveloppe d'une collection est un tableau d'objets.
+
+  - target: $.components.schemas.WrapperResponseObject
+    description: Traduire l'enveloppe des réponses d'objet.
+    update:
+      description: >-
+        Une enveloppe générique de requête/réponse contenant à la fois des
+        données et des liens. Les liens servent de contrôles hypermédia (HATEOAS).
+
+  - target: $.components.schemas.LinksSelf
+    description: Traduire la description du schéma de lien self.
+    update:
+      description: Un lien pour référencer chaque produit.
+
+  - target: $.components.schemas.LinksSelf.properties.self
+    description: Traduire la propriété du lien self.
+    update:
+      description: Une URL vers le produit retourné.
+
+  - target: $.components.schemas.Meta
+    description: Traduire la description des métadonnées.
+    update:
+      description: Les métadonnées de chaque réponse.
+
+  - target: $.components.schemas.Meta.properties.page
+    description: Traduire la propriété page.
+    update:
+      description: La page affichée dans la réponse.
+
+  - target: $.components.schemas.Meta.properties.pageSize
+    description: Traduire la propriété taille de page.
+    update:
+      description: Les limites générales de taille de page.
+
+  - target: $.components.schemas.Meta.properties.totalPages
+    description: Traduire la propriété nombre total de pages.
+    update:
+      description: Le nombre total de pages.
+
+  - target: $.components.schemas.LinksPagination
+    description: Traduire les liens de pagination.
+    update:
+      description: La gestion de chaque page.
+
+  - target: $.components.schemas.LinksPagination.properties.next
+    description: Traduire le lien vers la page suivante.
+    update:
+      description: La page de résultats suivante.
+
+  - target: $.components.schemas.LinksPagination.properties.prev
+    description: Traduire le lien vers la page précédente.
+    update:
+      description: La page de résultats précédente.
+
+  - target: $.components.schemas.Product
+    description: Traduire le schéma Product.
+    update:
+      description: Un objet produit conforme à Schema.org.
+
+  - target: $.components.schemas.Product.properties.identifier
+    description: Traduire l'identifiant du produit.
+    update:
+      description: Identifiant unique du produit.
+
+  - target: $.components.schemas.Product.properties.name
+    description: Traduire le nom du produit.
+    update:
+      description: Nom du produit.
+      example: Produit d'exemple
+
+  - target: $.components.schemas.Product.properties.descripton
+    description: >-
+      Traduire la description du produit. Le nom de propriété d'origine contient
+      'descripton'; cet overlay modifie uniquement la description et l'exemple.
+    update:
+      description: La description du produit.
+      example: >-
+        Une description claire du produit, incluant les caractéristiques
+        importantes, les cas d'utilisation et les détails pertinents pour
+        l'utilisateur.
+
+  - target: $.components.schemas.Product.properties.image
+    description: Traduire l'image du produit.
+    update:
+      description: Une image du produit.
+
+  - target: $.components.schemas.Problem
+    description: Traduire le schéma Problem Details.
+    update:
+      description: Un objet Problem Details pour les API HTTP.
+
+  - target: $.components.schemas.Problem.properties.type
+    description: Traduire le type de problème.
+    update:
+      description: Une référence URI qui identifie le type de problème.
+
+  - target: $.components.schemas.Problem.properties.title
+    description: Traduire le titre du problème.
+    update:
+      description: Un bref résumé lisible par un humain du type de problème.
+      example: Vous avez un crédit insuffisant.
+
+  - target: $.components.schemas.Problem.properties.detail
+    description: Traduire les détails du problème.
+    update:
+      description: Une explication lisible par un humain propre à cet événement.
+      example: Votre solde actuel est de 30, mais 50 sont nécessaires.
+
+  - target: $.components.schemas.Problem.properties.instance
+    description: Traduire l'instance du problème.
+    update:
+      description: Une référence URI qui identifie l'événement spécifique du problème.
+
+  - target: $.components.schemas.Problem.properties.status
+    description: Traduire le code d'état HTTP.
+    update:
+      description: Le code d'état HTTP.
+
+  - target: $.components.headers.RateLimit
+    description: Traduire l'en-tête RateLimit.
+    update:
+      description: >-
+        L'en-tête RateLimit communique la politique de quota. La valeur contient
+        une `limit` pour la limite expirante, `remaining` pour le quota restant
+        et `reset` pour le moment où la fenêtre temporelle est réinitialisée.
+
+  - target: $.components.headers.Retry-After
+    description: Traduire l'en-tête Retry-After.
+    update:
+      description: >-
+        L'en-tête Retry-After indique combien de temps l'agent utilisateur doit
+        attendre avant d'effectuer une requête ultérieure. La valeur est en
+        secondes et peut être un entier ou une date future. Si la valeur est un
+        entier, elle indique le nombre de secondes d'attente. Si la valeur est
+        une date, elle indique le moment où l'agent utilisateur peut effectuer
+        une requête ultérieure.
+
+  - target: $.components.headers.Retry-After.examples.integer
+    description: Traduire l'exemple entier de Retry-After.
+    update:
+      summary: Réessayer après 120 secondes
+
+  - target: $.components.headers.Retry-After.examples.date
+    description: Traduire l'exemple de date de Retry-After.
+    update:
+      summary: Réessayer après la date indiquée
+
+  - target: $.components.responses.BadRequest
+    description: Traduire la réponse Bad Request.
+    update:
+      description: Requête invalide
+
+  - target: $.components.responses.BadRequest.content['application/problem+json'].example
+    description: Traduire l'exemple JSON Bad Request.
+    update:
+      title: Requête invalide
+      detail: La requête est invalide ou il manque des paramètres obligatoires.
+
+  - target: $.components.responses.BadRequest.content['application/problem+xml'].example
+    description: Traduire l'exemple XML Bad Request.
+    update:
+      title: Requête invalide
+      detail: La requête est invalide ou il manque des paramètres obligatoires.
+
+  - target: $.components.responses.Conflict
+    description: Traduire la réponse Conflict.
+    update:
+      description: Conflit
+
+  - target: $.components.responses.Conflict.content['application/problem+json'].example
+    description: Traduire l'exemple JSON Conflict.
+    update:
+      title: Conflit
+      detail: Il existe un conflit avec une ressource existante.
+
+  - target: $.components.responses.Conflict.content['application/problem+xml'].example
+    description: Traduire l'exemple XML Conflict.
+    update:
+      title: Conflit
+      detail: Il existe un conflit avec une ressource existante.
+
+  - target: $.components.responses.Forbidden
+    description: Traduire la réponse Forbidden.
+    update:
+      description: Interdit
+
+  - target: $.components.responses.Forbidden.content['application/problem+json'].example
+    description: Traduire l'exemple JSON Forbidden.
+    update:
+      title: Interdit
+      detail: L'accès est interdit avec les identifiants fournis.
+
+  - target: $.components.responses.Forbidden.content['application/problem+xml'].example
+    description: Traduire l'exemple XML Forbidden.
+    update:
+      title: Interdit
+      detail: L'accès est interdit avec les identifiants fournis.
+
+  - target: $.components.responses.InternalServerError
+    description: Traduire la réponse Internal Server Error.
+    update:
+      description: Erreur interne du serveur
+
+  - target: $.components.responses.InternalServerError.content['application/problem+json'].example
+    description: Traduire l'exemple JSON Internal Server Error.
+    update:
+      title: Erreur interne du serveur
+      detail: Une erreur inattendue s'est produite.
+
+  - target: $.components.responses.InternalServerError.content['application/problem+xml'].example
+    description: Traduire l'exemple XML Internal Server Error.
+    update:
+      title: Erreur interne du serveur
+      detail: Une erreur inattendue s'est produite.
+
+  - target: $.components.responses.NotFound
+    description: Traduire la réponse Not Found.
+    update:
+      description: Non trouvé
+
+  - target: $.components.responses.NotFound.content['application/problem+json'].example
+    description: Traduire l'exemple JSON Not Found.
+    update:
+      title: Non trouvé
+      detail: La ressource demandée est introuvable.
+
+  - target: $.components.responses.NotFound.content['application/problem+xml'].example
+    description: Traduire l'exemple XML Not Found.
+    update:
+      title: Non trouvé
+      detail: La ressource demandée est introuvable.
+
+  - target: $.components.responses.TooManyRequests
+    description: Traduire la réponse Too Many Requests.
+    update:
+      description: Trop de requêtes
+
+  - target: $.components.responses.TooManyRequests.content['application/problem+json'].example
+    description: Traduire l'exemple JSON Too Many Requests.
+    update:
+      title: Trop de requêtes
+      detail: Vous avez dépassé la limite de débit.
+
+  - target: $.components.responses.TooManyRequests.content['application/problem+xml'].example
+    description: Traduire l'exemple XML Too Many Requests.
+    update:
+      title: Trop de requêtes
+      detail: Vous avez dépassé la limite de débit.
+
+  - target: $.components.responses.Unauthorized
+    description: Traduire la réponse Unauthorized.
+    update:
+      description: Non autorisé
+
+  - target: $.components.responses.Unauthorized.content['application/problem+json'].example
+    description: Traduire l'exemple JSON Unauthorized.
+    update:
+      title: Non autorisé
+      detail: Vous ne disposez pas des autorisations nécessaires.
+
+  - target: $.components.responses.Unauthorized.content['application/problem+xml'].example
+    description: Traduire l'exemple XML Unauthorized.
+    update:
+      title: Non autorisé
+      detail: Vous ne disposez pas des autorisations nécessaires.

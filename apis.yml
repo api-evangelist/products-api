@@ -7,7 +7,7 @@ tags:
   - Application Programming Interface
   - Products
 created: '2024-12-29'
-modified: '2026-05-19'
+modified: '2026-06-23'
 url: http://example.com/apis.json
 specificationVersion: '0.19'
 apis:
@@ -25,12 +25,102 @@ apis:
         url: http://example.com/documentation
       - type: OpenAPI
         url: openapi/products-api-openapi.yml
+      - type: PostmanCollection
+        url: collections/products-api.postman_collection.json
+      - type: OpenCollection
+        url: collections/products-api.opencollection.json
+      - type: JSONSchema
+        url: schema/index.yml
+      - type: JSONSchema
+        url: schema/Product.yml
+      - type: JSONSchema
+        url: schema/Meta.yml
+      - type: JSONSchema
+        url: schema/Problem.yml
+      - type: JSONSchema
+        url: schema/LinksSelf.yml
+      - type: JSONSchema
+        url: schema/LinksPagination.yml
+      - type: JSONSchema
+        url: schema/WrapperResponseObject.yml
+      - type: JSONSchema
+        url: schema/WrapperResponseCollection.yml
+      - type: FinOps
+        url: finops/products-api-finops.yml
+      - type: Plans
+        url: plans/products-api-plans.yml
+      - type: RateLimits
+        url: rate-limits/products-api-rate-limits.yml
       - type: Authentication
         url: http://example.com/authentication
       - type: GettingStarted
         url: http://example.com/getting-started
       - type: ChangeLog
         url: http://example.com/change-log
+      - type: OpenAPIOverlay
+        url: overlays/de/openapi.yml
+      - type: OpenAPIOverlay
+        url: overlays/fr/openapi.yml
+      - type: OpenAPIOverlay
+        url: overlays/it/openapi.yml
+      - type: OpenAPIOverlay
+        url: overlays/nl/openapi.yml
+      - type: JSONSchemaOverlay
+        url: overlays/de/schema/Product.yml
+      - type: JSONSchemaOverlay
+        url: overlays/de/schema/Meta.yml
+      - type: JSONSchemaOverlay
+        url: overlays/de/schema/Problem.yml
+      - type: JSONSchemaOverlay
+        url: overlays/de/schema/LinksSelf.yml
+      - type: JSONSchemaOverlay
+        url: overlays/de/schema/LinksPagination.yml
+      - type: JSONSchemaOverlay
+        url: overlays/de/schema/WrapperResponseObject.yml
+      - type: JSONSchemaOverlay
+        url: overlays/de/schema/WrapperResponseCollection.yml
+      - type: JSONSchemaOverlay
+        url: overlays/fr/schema/Product.yml
+      - type: JSONSchemaOverlay
+        url: overlays/fr/schema/Meta.yml
+      - type: JSONSchemaOverlay
+        url: overlays/fr/schema/Problem.yml
+      - type: JSONSchemaOverlay
+        url: overlays/fr/schema/LinksSelf.yml
+      - type: JSONSchemaOverlay
+        url: overlays/fr/schema/LinksPagination.yml
+      - type: JSONSchemaOverlay
+        url: overlays/fr/schema/WrapperResponseObject.yml
+      - type: JSONSchemaOverlay
+        url: overlays/fr/schema/WrapperResponseCollection.yml
+      - type: JSONSchemaOverlay
+        url: overlays/it/schema/Product.yml
+      - type: JSONSchemaOverlay
+        url: overlays/it/schema/Meta.yml
+      - type: JSONSchemaOverlay
+        url: overlays/it/schema/Problem.yml
+      - type: JSONSchemaOverlay
+        url: overlays/it/schema/LinksSelf.yml
+      - type: JSONSchemaOverlay
+        url: overlays/it/schema/LinksPagination.yml
+      - type: JSONSchemaOverlay
+        url: overlays/it/schema/WrapperResponseObject.yml
+      - type: JSONSchemaOverlay
+        url: overlays/it/schema/WrapperResponseCollection.yml
+      - type: JSONSchemaOverlay
+        url: overlays/nl/schema/Product.yml
+      - type: JSONSchemaOverlay
+        url: overlays/nl/schema/Meta.yml
+      - type: JSONSchemaOverlay
+        url: overlays/nl/schema/Problem.yml
+      - type: JSONSchemaOverlay
+        url: overlays/nl/schema/LinksSelf.yml
+      - type: JSONSchemaOverlay
+        url: overlays/nl/schema/LinksPagination.yml
+      - type: JSONSchemaOverlay
+        url: overlays/nl/schema/WrapperResponseObject.yml
+      - type: JSONSchemaOverlay
+        url: overlays/nl/schema/WrapperResponseCollection.yml
     contact:
       - FN: API Evangelist
         email: info@apievangelist.com

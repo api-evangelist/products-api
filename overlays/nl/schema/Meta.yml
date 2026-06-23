@@ -1,0 +1,15 @@
+overlay: 1.0.0
+info:
+  title: Meta JSON Schema Dutch Overlay
+  version: 1.0.0
+  description: Dutch localization overlay for the standalone Meta JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/Meta.yml
+actions:
+- target: $.description
+  update: De metadata voor elke respons.
+- target: $.properties.page.description
+  update: De pagina die in de respons wordt weergegeven.
+- target: $.properties.pageSize.description
+  update: De algemene limieten voor de paginagrootte.
+- target: $.properties.totalPages.description
+  update: Het totale aantal pagina’s.

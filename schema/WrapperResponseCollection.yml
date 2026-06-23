@@ -1,0 +1,22 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://api.example.com/schemas/WrapperResponseCollection.yml
+title: WrapperResponseCollection
+description: This is a generic request/response wrapper which contains both data and
+  links which serve as hypermedia controls (HATEOAS).
+type: object
+required:
+- meta
+- data
+- links
+properties:
+  meta:
+    $ref: Meta.yml
+  data:
+    description: The wrapper for a collection is an array of objects.
+    type: array
+    maxItems: 100
+    minItems: 1
+    items:
+      $ref: Product.yml
+  links:
+    $ref: LinksPagination.yml

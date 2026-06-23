@@ -1,0 +1,13 @@
+overlay: 1.0.0
+info:
+  title: WrapperResponseCollection JSON Schema German Overlay
+  version: 1.0.0
+  description: German localization overlay for the standalone WrapperResponseCollection
+    JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/WrapperResponseCollection.yml
+actions:
+- target: $.description
+  update: Dies ist ein generischer Request/Response-Wrapper, der sowohl Daten als
+    auch Links enthält, die als Hypermedia-Steuerelemente dienen (HATEOAS).
+- target: $.properties.data.description
+  update: Der Wrapper für eine Sammlung ist ein Array von Objekten.

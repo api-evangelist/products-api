@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: WrapperResponseObject JSON Schema Dutch Overlay
+  version: 1.0.0
+  description: Dutch localization overlay for the standalone WrapperResponseObject
+    JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/WrapperResponseObject.yml
+actions:
+- target: $.description
+  update: Dit is een generieke request/response-wrapper die zowel gegevens als links
+    bevat die dienen als hypermediabesturingen (HATEOAS).

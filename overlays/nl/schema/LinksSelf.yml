@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: LinksSelf JSON Schema Dutch Overlay
+  version: 1.0.0
+  description: Dutch localization overlay for the standalone LinksSelf JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/LinksSelf.yml
+actions:
+- target: $.description
+  update: Een link om naar elk product te verwijzen.
+- target: $.properties.self.description
+  update: Een URL naar het geretourneerde product.

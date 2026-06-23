@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: LinksSelf JSON Schema German Overlay
+  version: 1.0.0
+  description: German localization overlay for the standalone LinksSelf JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/LinksSelf.yml
+actions:
+- target: $.description
+  update: Ein Link zum Verweisen auf jedes Produkt.
+- target: $.properties.self.description
+  update: Eine URL zum zurückgegebenen Produkt.

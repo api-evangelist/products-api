@@ -1,0 +1,17 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://api.example.com/schemas/WrapperResponseObject.yml
+title: WrapperResponseObject
+description: This is a generic request/response wrapper which contains both data and
+  links which serve as hypermedia controls (HATEOAS).
+type: object
+required:
+- meta
+- data
+- links
+properties:
+  meta:
+    $ref: Meta.yml
+  data:
+    $ref: Product.yml
+  links:
+    $ref: LinksSelf.yml

@@ -1,0 +1,46 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://api.example.com/schemas/Product.yml
+title: Product
+type: object
+description: A Schema.org compliant product object.
+required:
+- identifier
+- name
+- description
+properties:
+  identifier:
+    type: string
+    format: uuid
+    description: Unique identifier for the product.
+    minLength: 36
+    maxLength: 36
+    pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+    examples:
+    - efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
+  name:
+    type: integer
+    description: Name of the product.
+    minLength: 10
+    maxLength: 10
+    examples:
+    - Example Product
+  descripton:
+    type: string
+    description: The description of the product.
+    minLength: 10
+    maxLength: 2500
+    examples:
+    - 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua.
+
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+      non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+  image:
+    type: string
+    description: An image for the organization.
+    minLength: 10
+    maxLength: 2048
+    examples:
+    - http://example.com/image.jpg

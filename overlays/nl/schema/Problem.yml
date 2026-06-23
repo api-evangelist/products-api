@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: Problem JSON Schema Dutch Overlay
+  version: 1.0.0
+  description: Dutch localization overlay for the standalone Problem JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/Problem.yml
+actions:
+- target: $.description
+  update: Dit is een Problem Details-object voor HTTP-API’s.
+- target: $.properties.type.description
+  update: Een URI-verwijzing die het probleemtype identificeert
+- target: $.properties.title.description
+  update: Een korte, menselijk leesbare samenvatting van het probleemtype
+- target: $.properties.detail.description
+  update: Een menselijk leesbare uitleg die specifiek is voor dit geval van het probleem
+- target: $.properties.instance.description
+  update: Een URI-verwijzing die dit specifieke geval van het probleem identificeert
+- target: $.properties.status.description
+  update: De HTTP-statuscode

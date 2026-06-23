@@ -1,0 +1,18 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://api.example.com/schemas/LinksPagination.yml
+title: LinksPagination
+type: object
+description: The handling of each page.
+properties:
+  next:
+    type: string
+    description: The next page in results.
+    format: uri
+    minLength: 10
+    maxLength: 2048
+  prev:
+    type: string
+    description: The previous page in results.
+    format: uri
+    minLength: 10
+    maxLength: 2048

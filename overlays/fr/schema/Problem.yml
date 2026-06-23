@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: Problem JSON Schema French Overlay
+  version: 1.0.0
+  description: French localization overlay for the standalone Problem JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/Problem.yml
+actions:
+- target: $.description
+  update: Il s’agit d’un objet Problem Details pour les API HTTP.
+- target: $.properties.type.description
+  update: Une référence URI qui identifie le type de problème
+- target: $.properties.title.description
+  update: Un bref résumé lisible par un humain du type de problème
+- target: $.properties.detail.description
+  update: Une explication lisible par un humain propre à cette occurrence du problème
+- target: $.properties.instance.description
+  update: Une référence URI qui identifie l’occurrence spécifique du problème
+- target: $.properties.status.description
+  update: Le code d’état HTTP

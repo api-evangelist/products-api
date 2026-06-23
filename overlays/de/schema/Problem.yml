@@ -1,0 +1,20 @@
+overlay: 1.0.0
+info:
+  title: Problem JSON Schema German Overlay
+  version: 1.0.0
+  description: German localization overlay for the standalone Problem JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/Problem.yml
+actions:
+- target: $.description
+  update: Dies ist ein Problem-Details-Objekt für HTTP-APIs.
+- target: $.properties.type.description
+  update: Eine URI-Referenz, die den Problemtyp identifiziert
+- target: $.properties.title.description
+  update: Eine kurze, menschenlesbare Zusammenfassung des Problemtyps
+- target: $.properties.detail.description
+  update: Eine menschenlesbare Erklärung, die sich auf dieses konkrete Auftreten des
+    Problems bezieht
+- target: $.properties.instance.description
+  update: Eine URI-Referenz, die das konkrete Auftreten des Problems identifiziert
+- target: $.properties.status.description
+  update: Der HTTP-Statuscode

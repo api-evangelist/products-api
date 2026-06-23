@@ -1,0 +1,15 @@
+overlay: 1.0.0
+info:
+  title: Meta JSON Schema French Overlay
+  version: 1.0.0
+  description: French localization overlay for the standalone Meta JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/Meta.yml
+actions:
+- target: $.description
+  update: Les métadonnées de chaque réponse.
+- target: $.properties.page.description
+  update: La page représentée dans la réponse.
+- target: $.properties.pageSize.description
+  update: Les limites globales de taille de page.
+- target: $.properties.totalPages.description
+  update: Le nombre total de pages.

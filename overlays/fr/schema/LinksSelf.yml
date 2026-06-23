@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: LinksSelf JSON Schema French Overlay
+  version: 1.0.0
+  description: French localization overlay for the standalone LinksSelf JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/LinksSelf.yml
+actions:
+- target: $.description
+  update: Un lien pour référencer chaque produit.
+- target: $.properties.self.description
+  update: Une URL vers le produit renvoyé.

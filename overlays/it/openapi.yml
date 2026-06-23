@@ -1,0 +1,305 @@
+overlay: 1.1.0
+info:
+  title: Overlay italiano per Products API
+  version: 0.1.0
+  description: Overlay OpenAPI italiano per l’API Products di API Evangelist. Questo overlay
+    traduce i campi di documentazione rivolti alle persone, gli esempi e i messaggi di errore
+    senza modificare la descrizione OpenAPI originale.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/openapi/products-api-openapi.yml
+actions:
+- target: $.info
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: API Prodotti
+    description: Questa è un modello di API per un’API di prodotti, pensato per storytelling,
+      formazione e basi di conoscenza.
+    termsOfService: http://example.com/terms/
+- target: $.externalDocs
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Pagina principale dell’API Prodotti
+- target: $.servers[0]
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Produzione
+- target: $.tags[?(@.name == 'Products')]
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Pubblicare e gestire prodotti.
+- target: $.paths['/products'].get
+  description: Tradurre la documentazione in italiano.
+  update:
+    summary: Recupera prodotti
+    description: Restituisce l’elenco di tutti i prodotti per l’utente autenticato.
+- target: $.paths['/products'].get.responses['200']
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un elenco di prodotti
+- target: $.paths['/products'].post
+  description: Tradurre la documentazione in italiano.
+  update:
+    summary: Crea un prodotto
+    description: Crea un nuovo prodotto.
+- target: $.paths['/products'].post.responses['201']
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Prodotto creato correttamente
+- target: $.paths['/products/{productId}'].get
+  description: Tradurre la documentazione in italiano.
+  update:
+    summary: Recupera un prodotto
+    description: Restituisce i dettagli di uno specifico prodotto.
+- target: $.paths['/products/{productId}'].get.responses['200']
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Dettagli del prodotto
+- target: $.paths['/products/{productId}'].put
+  description: Tradurre la documentazione in italiano.
+  update:
+    summary: Aggiorna un prodotto
+    description: Aggiorna un prodotto.
+- target: $.paths['/products/{productId}'].put.responses['204']
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Prodotto aggiornato
+- target: $.paths['/products/{productId}'].delete
+  description: Tradurre la documentazione in italiano.
+  update:
+    summary: Elimina un prodotto
+    description: Elimina un prodotto.
+- target: $.paths['/products/{productId}'].delete.responses['204']
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Prodotto eliminato
+- target: $.paths['/products/{productId}/cancle'].put
+  description: Tradurre la documentazione in italiano.
+  update:
+    summary: Annulla un prodotto
+    description: Annulla un prodotto.
+- target: $.paths['/products/{productId}/cancle'].put.responses['204']
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Prodotto annullato
+- target: $.components.parameters.ProductId
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: L’identificatore del prodotto da recuperare.
+- target: $.components.schemas.WrapperResponseCollection
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un contenitore generico di richiesta/risposta che include sia dati sia link.
+      I link fungono da controlli ipermediali (HATEOAS).
+- target: $.components.schemas.WrapperResponseCollection.properties.data
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Il contenitore di una raccolta è un array di oggetti.
+- target: $.components.schemas.WrapperResponseObject
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un contenitore generico di richiesta/risposta che include sia dati sia link.
+      I link fungono da controlli ipermediali (HATEOAS).
+- target: $.components.schemas.LinksSelf
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un link per fare riferimento a ciascun prodotto.
+- target: $.components.schemas.LinksSelf.properties.self
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un URL verso il prodotto restituito.
+- target: $.components.schemas.Meta
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: I metadati di ogni risposta.
+- target: $.components.schemas.Meta.properties.page
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: La pagina visualizzata nella risposta.
+- target: $.components.schemas.Meta.properties.pageSize
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: I limiti generali della dimensione della pagina.
+- target: $.components.schemas.Meta.properties.totalPages
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Il numero totale di pagine.
+- target: $.components.schemas.LinksPagination
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: La gestione di ciascuna pagina.
+- target: $.components.schemas.LinksPagination.properties.next
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: La pagina successiva dei risultati.
+- target: $.components.schemas.LinksPagination.properties.prev
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: La pagina precedente dei risultati.
+- target: $.components.schemas.Product
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un oggetto prodotto conforme a Schema.org.
+- target: $.components.schemas.Product.properties.identifier
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Identificatore univoco del prodotto.
+- target: $.components.schemas.Product.properties.name
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Nome del prodotto.
+    example: Prodotto di esempio
+- target: $.components.schemas.Product.properties.descripton
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: La descrizione del prodotto.
+    example: Una descrizione chiara del prodotto, incluse le caratteristiche importanti, i
+      casi d’uso e i dettagli rilevanti per l’utente.
+- target: $.components.schemas.Product.properties.image
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un’immagine del prodotto.
+- target: $.components.schemas.Problem
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un oggetto Problem Details per API HTTP.
+- target: $.components.schemas.Problem.properties.type
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un riferimento URI che identifica il tipo di problema.
+- target: $.components.schemas.Problem.properties.title
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un breve riepilogo leggibile da una persona del tipo di problema.
+    example: Il credito disponibile non è sufficiente.
+- target: $.components.schemas.Problem.properties.detail
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Una spiegazione leggibile da una persona specifica per questo evento.
+    example: Il saldo attuale è 30, ma sono necessari 50.
+- target: $.components.schemas.Problem.properties.instance
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Un riferimento URI che identifica lo specifico evento del problema.
+- target: $.components.schemas.Problem.properties.status
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Il codice di stato HTTP.
+- target: $.components.headers.RateLimit
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: L’header RateLimit comunica la politica di quota. Il valore contiene `limit`
+      per il limite in scadenza, `remaining` per la quota rimanente e `reset` per il momento
+      in cui la finestra temporale viene reimpostata.
+- target: $.components.headers.Retry-After
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: L’header Retry-After indica per quanto tempo lo user agent deve attendere
+      prima di effettuare una richiesta successiva. Il valore è espresso in secondi e può
+      essere un intero o una data futura. Se il valore è un intero, indica il numero di secondi
+      da attendere. Se il valore è una data, indica il momento in cui lo user agent può effettuare
+      una richiesta successiva.
+- target: $.components.headers.Retry-After.examples.integer
+  description: Tradurre la documentazione in italiano.
+  update:
+    summary: Riprova dopo 120 secondi
+- target: $.components.headers.Retry-After.examples.date
+  description: Tradurre la documentazione in italiano.
+  update:
+    summary: Riprova dopo la data indicata
+- target: $.components.responses.BadRequest
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Richiesta non valida
+- target: $.components.responses.BadRequest.content['application/problem+json'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Richiesta non valida
+    detail: La richiesta non è valida o mancano parametri obbligatori.
+- target: $.components.responses.BadRequest.content['application/problem+xml'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Richiesta non valida
+    detail: La richiesta non è valida o mancano parametri obbligatori.
+- target: $.components.responses.Conflict
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Conflitto
+- target: $.components.responses.Conflict.content['application/problem+json'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Conflitto
+    detail: Esiste un conflitto con una risorsa esistente.
+- target: $.components.responses.Conflict.content['application/problem+xml'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Conflitto
+    detail: Esiste un conflitto con una risorsa esistente.
+- target: $.components.responses.Forbidden
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Vietato
+- target: $.components.responses.Forbidden.content['application/problem+json'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Vietato
+    detail: L’accesso è vietato con le credenziali fornite.
+- target: $.components.responses.Forbidden.content['application/problem+xml'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Vietato
+    detail: L’accesso è vietato con le credenziali fornite.
+- target: $.components.responses.InternalServerError
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Errore interno del server
+- target: $.components.responses.InternalServerError.content['application/problem+json'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Errore interno del server
+    detail: Si è verificato un errore imprevisto.
+- target: $.components.responses.InternalServerError.content['application/problem+xml'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Errore interno del server
+    detail: Si è verificato un errore imprevisto.
+- target: $.components.responses.NotFound
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Non trovato
+- target: $.components.responses.NotFound.content['application/problem+json'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Non trovato
+    detail: La risorsa richiesta non è stata trovata.
+- target: $.components.responses.NotFound.content['application/problem+xml'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Non trovato
+    detail: La risorsa richiesta non è stata trovata.
+- target: $.components.responses.TooManyRequests
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Troppe richieste
+- target: $.components.responses.TooManyRequests.content['application/problem+json'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Troppe richieste
+    detail: Hai superato il limite di frequenza.
+- target: $.components.responses.TooManyRequests.content['application/problem+xml'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Troppe richieste
+    detail: Hai superato il limite di frequenza.
+- target: $.components.responses.Unauthorized
+  description: Tradurre la documentazione in italiano.
+  update:
+    description: Non autorizzato
+- target: $.components.responses.Unauthorized.content['application/problem+json'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Non autorizzato
+    detail: Non disponi delle autorizzazioni necessarie.
+- target: $.components.responses.Unauthorized.content['application/problem+xml'].example
+  description: Tradurre la documentazione in italiano.
+  update:
+    title: Non autorizzato
+    detail: Non disponi delle autorizzazioni necessarie.

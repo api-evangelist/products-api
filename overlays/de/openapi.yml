@@ -1,0 +1,305 @@
+overlay: 1.1.0
+info:
+  title: Deutsches Overlay für Products API
+  version: 0.1.0
+  description: Deutsches OpenAPI Overlay für die API Evangelist Products API. Dieses Overlay
+    übersetzt menschenlesbare Dokumentationsfelder, Beispiele und Fehlermeldungen, ohne die
+    ursprüngliche OpenAPI-Beschreibung zu ändern.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/openapi/products-api-openapi.yml
+actions:
+- target: $.info
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Produkte-API
+    description: Dies ist eine API-Vorlage für eine Produkte-API, die für Storytelling, Schulungen
+      und Wissensdatenbanken verwendet werden kann.
+    termsOfService: http://example.com/terms/
+- target: $.externalDocs
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Startseite der Produkte-API
+- target: $.servers[0]
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Produktion
+- target: $.tags[?(@.name == 'Products')]
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Produkte veröffentlichen und verwalten.
+- target: $.paths['/products'].get
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    summary: Produkte abrufen
+    description: Gibt die Liste aller Produkte für den authentifizierten Benutzer zurück.
+- target: $.paths['/products'].get.responses['200']
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Eine Liste von Produkten
+- target: $.paths['/products'].post
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    summary: Produkt erstellen
+    description: Erstellt ein neues Produkt.
+- target: $.paths['/products'].post.responses['201']
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Produkt erfolgreich erstellt
+- target: $.paths['/products/{productId}'].get
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    summary: Produkt abrufen
+    description: Gibt die Details eines bestimmten Produkts zurück.
+- target: $.paths['/products/{productId}'].get.responses['200']
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Produktdetails
+- target: $.paths['/products/{productId}'].put
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    summary: Produkt aktualisieren
+    description: Aktualisiert ein Produkt.
+- target: $.paths['/products/{productId}'].put.responses['204']
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Produkt aktualisiert
+- target: $.paths['/products/{productId}'].delete
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    summary: Produkt löschen
+    description: Löscht ein Produkt.
+- target: $.paths['/products/{productId}'].delete.responses['204']
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Produkt gelöscht
+- target: $.paths['/products/{productId}/cancle'].put
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    summary: Produkt stornieren
+    description: Storniert ein Produkt.
+- target: $.paths['/products/{productId}/cancle'].put.responses['204']
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Produkt storniert
+- target: $.components.parameters.ProductId
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die Kennung des abzurufenden Produkts.
+- target: $.components.schemas.WrapperResponseCollection
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Eine generische Anfrage-/Antwort-Hülle, die sowohl Daten als auch Links enthält.
+      Die Links dienen als Hypermedia-Steuerelemente (HATEOAS).
+- target: $.components.schemas.WrapperResponseCollection.properties.data
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die Hülle einer Sammlung ist ein Array von Objekten.
+- target: $.components.schemas.WrapperResponseObject
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Eine generische Anfrage-/Antwort-Hülle, die sowohl Daten als auch Links enthält.
+      Die Links dienen als Hypermedia-Steuerelemente (HATEOAS).
+- target: $.components.schemas.LinksSelf
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Ein Link zum Referenzieren jedes Produkts.
+- target: $.components.schemas.LinksSelf.properties.self
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Eine URL zum zurückgegebenen Produkt.
+- target: $.components.schemas.Meta
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die Metadaten jeder Antwort.
+- target: $.components.schemas.Meta.properties.page
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die in der Antwort angezeigte Seite.
+- target: $.components.schemas.Meta.properties.pageSize
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die allgemeinen Begrenzungen der Seitengröße.
+- target: $.components.schemas.Meta.properties.totalPages
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die Gesamtzahl der Seiten.
+- target: $.components.schemas.LinksPagination
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die Verwaltung jeder Seite.
+- target: $.components.schemas.LinksPagination.properties.next
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die nächste Ergebnisseite.
+- target: $.components.schemas.LinksPagination.properties.prev
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die vorherige Ergebnisseite.
+- target: $.components.schemas.Product
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Ein Schema.org-konformes Produktobjekt.
+- target: $.components.schemas.Product.properties.identifier
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Eindeutige Kennung des Produkts.
+- target: $.components.schemas.Product.properties.name
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Name des Produkts.
+    example: Beispielprodukt
+- target: $.components.schemas.Product.properties.descripton
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Die Beschreibung des Produkts.
+    example: Eine klare Produktbeschreibung, einschließlich wichtiger Merkmale, Anwendungsfälle
+      und relevanter Details für den Benutzer.
+- target: $.components.schemas.Product.properties.image
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Ein Bild des Produkts.
+- target: $.components.schemas.Problem
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Ein Problem-Details-Objekt für HTTP-APIs.
+- target: $.components.schemas.Problem.properties.type
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Eine URI-Referenz, die den Problemtyp identifiziert.
+- target: $.components.schemas.Problem.properties.title
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Eine kurze, für Menschen lesbare Zusammenfassung des Problemtyps.
+    example: Sie haben nicht genügend Guthaben.
+- target: $.components.schemas.Problem.properties.detail
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Eine für Menschen lesbare Erklärung, die spezifisch für dieses Ereignis ist.
+    example: Ihr aktueller Kontostand beträgt 30, aber 50 sind erforderlich.
+- target: $.components.schemas.Problem.properties.instance
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Eine URI-Referenz, die das spezifische Auftreten des Problems identifiziert.
+- target: $.components.schemas.Problem.properties.status
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Der HTTP-Statuscode.
+- target: $.components.headers.RateLimit
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Der RateLimit-Header kommuniziert die Kontingentrichtlinie. Der Wert enthält
+      `limit` für das ablaufende Limit, `remaining` für das verbleibende Kontingent und `reset`
+      für den Zeitpunkt, zu dem das Zeitfenster zurückgesetzt wird.
+- target: $.components.headers.Retry-After
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Der Retry-After-Header gibt an, wie lange der User-Agent warten soll, bevor
+      er eine weitere Anfrage stellt. Der Wert wird in Sekunden angegeben und kann eine Ganzzahl
+      oder ein zukünftiges Datum sein. Ist der Wert eine Ganzzahl, gibt er die Anzahl der
+      zu wartenden Sekunden an. Ist der Wert ein Datum, gibt er den Zeitpunkt an, zu dem der
+      User-Agent eine weitere Anfrage stellen kann.
+- target: $.components.headers.Retry-After.examples.integer
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    summary: Nach 120 Sekunden erneut versuchen
+- target: $.components.headers.Retry-After.examples.date
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    summary: Nach dem angegebenen Datum erneut versuchen
+- target: $.components.responses.BadRequest
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Ungültige Anfrage
+- target: $.components.responses.BadRequest.content['application/problem+json'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Ungültige Anfrage
+    detail: Die Anfrage ist ungültig oder es fehlen erforderliche Parameter.
+- target: $.components.responses.BadRequest.content['application/problem+xml'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Ungültige Anfrage
+    detail: Die Anfrage ist ungültig oder es fehlen erforderliche Parameter.
+- target: $.components.responses.Conflict
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Konflikt
+- target: $.components.responses.Conflict.content['application/problem+json'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Konflikt
+    detail: Es besteht ein Konflikt mit einer vorhandenen Ressource.
+- target: $.components.responses.Conflict.content['application/problem+xml'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Konflikt
+    detail: Es besteht ein Konflikt mit einer vorhandenen Ressource.
+- target: $.components.responses.Forbidden
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Verboten
+- target: $.components.responses.Forbidden.content['application/problem+json'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Verboten
+    detail: Der Zugriff ist mit den angegebenen Anmeldedaten verboten.
+- target: $.components.responses.Forbidden.content['application/problem+xml'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Verboten
+    detail: Der Zugriff ist mit den angegebenen Anmeldedaten verboten.
+- target: $.components.responses.InternalServerError
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Interner Serverfehler
+- target: $.components.responses.InternalServerError.content['application/problem+json'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Interner Serverfehler
+    detail: Ein unerwarteter Fehler ist aufgetreten.
+- target: $.components.responses.InternalServerError.content['application/problem+xml'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Interner Serverfehler
+    detail: Ein unerwarteter Fehler ist aufgetreten.
+- target: $.components.responses.NotFound
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Nicht gefunden
+- target: $.components.responses.NotFound.content['application/problem+json'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Nicht gefunden
+    detail: Die angeforderte Ressource wurde nicht gefunden.
+- target: $.components.responses.NotFound.content['application/problem+xml'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Nicht gefunden
+    detail: Die angeforderte Ressource wurde nicht gefunden.
+- target: $.components.responses.TooManyRequests
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Zu viele Anfragen
+- target: $.components.responses.TooManyRequests.content['application/problem+json'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Zu viele Anfragen
+    detail: Sie haben das Ratenlimit überschritten.
+- target: $.components.responses.TooManyRequests.content['application/problem+xml'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Zu viele Anfragen
+    detail: Sie haben das Ratenlimit überschritten.
+- target: $.components.responses.Unauthorized
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    description: Nicht autorisiert
+- target: $.components.responses.Unauthorized.content['application/problem+json'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Nicht autorisiert
+    detail: Sie verfügen nicht über die erforderlichen Berechtigungen.
+- target: $.components.responses.Unauthorized.content['application/problem+xml'].example
+  description: Dokumentation ins Deutsche übersetzen.
+  update:
+    title: Nicht autorisiert
+    detail: Sie verfügen nicht über die erforderlichen Berechtigungen.

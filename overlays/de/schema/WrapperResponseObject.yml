@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: WrapperResponseObject JSON Schema German Overlay
+  version: 1.0.0
+  description: German localization overlay for the standalone WrapperResponseObject
+    JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/WrapperResponseObject.yml
+actions:
+- target: $.description
+  update: Dies ist ein generischer Request/Response-Wrapper, der sowohl Daten als
+    auch Links enthält, die als Hypermedia-Steuerelemente dienen (HATEOAS).

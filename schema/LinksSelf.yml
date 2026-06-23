@@ -1,0 +1,14 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+$id: https://api.example.com/schemas/LinksSelf.yml
+title: LinksSelf
+type: object
+description: A link to reference each product.
+required:
+- self
+properties:
+  self:
+    type: string
+    description: A URL to product returned.
+    format: uri
+    minLength: 10
+    maxLength: 2048

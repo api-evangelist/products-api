@@ -1,0 +1,11 @@
+overlay: 1.0.0
+info:
+  title: WrapperResponseObject JSON Schema Italian Overlay
+  version: 1.0.0
+  description: Italian localization overlay for the standalone WrapperResponseObject
+    JSON Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/WrapperResponseObject.yml
+actions:
+- target: $.description
+  update: Questo è un wrapper generico di richiesta/risposta che contiene sia dati
+    sia link che fungono da controlli ipermediali (HATEOAS).

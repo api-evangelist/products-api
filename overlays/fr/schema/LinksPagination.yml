@@ -1,0 +1,14 @@
+overlay: 1.0.0
+info:
+  title: LinksPagination JSON Schema French Overlay
+  version: 1.0.0
+  description: French localization overlay for the standalone LinksPagination JSON
+    Schema.
+extends: https://raw.githubusercontent.com/api-evangelist/products-api/main/schema/LinksPagination.yml
+actions:
+- target: $.description
+  update: La gestion de chaque page.
+- target: $.properties.next.description
+  update: La page suivante dans les résultats.
+- target: $.properties.prev.description
+  update: La page précédente dans les résultats.
