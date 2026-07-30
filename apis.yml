@@ -2,7 +2,20 @@ aid: api-evangelist-products
 name: Products
 kind: template
 description: This is a template APIs.json for a products API, to be used in storytelling, training, and knowledge bases.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/products-api.png
 tags:
   - Application Programming Interface
   - Products
@@ -11,119 +24,114 @@ modified: '2026-06-23'
 url: http://example.com/apis.json
 specificationVersion: '0.19'
 apis:
-  - aid: api-evangelist-products:products-api
-    name: Products API.
-    description: A demo products API.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://example.com/apis.yml
-    baseURL: http://apis.example.com
-    tags:
-      - Application Programming Interface
-      - Products
-    properties:
-      - type: Documentation
-        url: http://example.com/documentation
-      - type: OpenAPI
-        url: openapi/products-api-openapi.yml
-      - type: PostmanCollection
-        url: collections/products-api.postman_collection.json
-      - type: OpenCollection
-        url: collections/products-api.opencollection.json
-      - type: JSONSchema
-        url: schema/index.yml
-      - type: JSONSchema
-        url: schema/Product.yml
-      - type: JSONSchema
-        url: schema/Meta.yml
-      - type: JSONSchema
-        url: schema/Problem.yml
-      - type: JSONSchema
-        url: schema/LinksSelf.yml
-      - type: JSONSchema
-        url: schema/LinksPagination.yml
-      - type: JSONSchema
-        url: schema/WrapperResponseObject.yml
-      - type: JSONSchema
-        url: schema/WrapperResponseCollection.yml
-      - type: FinOps
-        url: finops/products-api-finops.yml
-      - type: Plans
-        url: plans/products-api-plans.yml
-      - type: RateLimits
-        url: rate-limits/products-api-rate-limits.yml
-      - type: Authentication
-        url: http://example.com/authentication
-      - type: GettingStarted
-        url: http://example.com/getting-started
-      - type: ChangeLog
-        url: http://example.com/change-log
-      - type: OpenAPIOverlay
-        url: overlays/de/openapi.yml
-      - type: OpenAPIOverlay
-        url: overlays/fr/openapi.yml
-      - type: OpenAPIOverlay
-        url: overlays/it/openapi.yml
-      - type: OpenAPIOverlay
-        url: overlays/nl/openapi.yml
-      - type: JSONSchemaOverlay
-        url: overlays/de/schema/Product.yml
-      - type: JSONSchemaOverlay
-        url: overlays/de/schema/Meta.yml
-      - type: JSONSchemaOverlay
-        url: overlays/de/schema/Problem.yml
-      - type: JSONSchemaOverlay
-        url: overlays/de/schema/LinksSelf.yml
-      - type: JSONSchemaOverlay
-        url: overlays/de/schema/LinksPagination.yml
-      - type: JSONSchemaOverlay
-        url: overlays/de/schema/WrapperResponseObject.yml
-      - type: JSONSchemaOverlay
-        url: overlays/de/schema/WrapperResponseCollection.yml
-      - type: JSONSchemaOverlay
-        url: overlays/fr/schema/Product.yml
-      - type: JSONSchemaOverlay
-        url: overlays/fr/schema/Meta.yml
-      - type: JSONSchemaOverlay
-        url: overlays/fr/schema/Problem.yml
-      - type: JSONSchemaOverlay
-        url: overlays/fr/schema/LinksSelf.yml
-      - type: JSONSchemaOverlay
-        url: overlays/fr/schema/LinksPagination.yml
-      - type: JSONSchemaOverlay
-        url: overlays/fr/schema/WrapperResponseObject.yml
-      - type: JSONSchemaOverlay
-        url: overlays/fr/schema/WrapperResponseCollection.yml
-      - type: JSONSchemaOverlay
-        url: overlays/it/schema/Product.yml
-      - type: JSONSchemaOverlay
-        url: overlays/it/schema/Meta.yml
-      - type: JSONSchemaOverlay
-        url: overlays/it/schema/Problem.yml
-      - type: JSONSchemaOverlay
-        url: overlays/it/schema/LinksSelf.yml
-      - type: JSONSchemaOverlay
-        url: overlays/it/schema/LinksPagination.yml
-      - type: JSONSchemaOverlay
-        url: overlays/it/schema/WrapperResponseObject.yml
-      - type: JSONSchemaOverlay
-        url: overlays/it/schema/WrapperResponseCollection.yml
-      - type: JSONSchemaOverlay
-        url: overlays/nl/schema/Product.yml
-      - type: JSONSchemaOverlay
-        url: overlays/nl/schema/Meta.yml
-      - type: JSONSchemaOverlay
-        url: overlays/nl/schema/Problem.yml
-      - type: JSONSchemaOverlay
-        url: overlays/nl/schema/LinksSelf.yml
-      - type: JSONSchemaOverlay
-        url: overlays/nl/schema/LinksPagination.yml
-      - type: JSONSchemaOverlay
-        url: overlays/nl/schema/WrapperResponseObject.yml
-      - type: JSONSchemaOverlay
-        url: overlays/nl/schema/WrapperResponseCollection.yml
-    contact:
-      - FN: API Evangelist
-        email: info@apievangelist.com
+- aid: products-api:products-api-products-api
+  name: Products Products API
+  description: Placing and managing of products placed for products.
+  humanURL: https://example.com/apis.yml
+  baseURL: http://apis.example.com
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/products-api-products-api-openapi.yml
+  - type: Documentation
+    url: http://example.com/documentation
+  - type: PostmanCollection
+    url: collections/products-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/products-api.opencollection.json
+  - type: JSONSchema
+    url: schema/index.yml
+  - type: JSONSchema
+    url: schema/Product.yml
+  - type: JSONSchema
+    url: schema/Meta.yml
+  - type: JSONSchema
+    url: schema/Problem.yml
+  - type: JSONSchema
+    url: schema/LinksSelf.yml
+  - type: JSONSchema
+    url: schema/LinksPagination.yml
+  - type: JSONSchema
+    url: schema/WrapperResponseObject.yml
+  - type: JSONSchema
+    url: schema/WrapperResponseCollection.yml
+  - type: FinOps
+    url: finops/products-api-finops.yml
+  - type: Plans
+    url: plans/products-api-plans.yml
+  - type: RateLimits
+    url: rate-limits/products-api-rate-limits.yml
+  - type: Authentication
+    url: http://example.com/authentication
+  - type: GettingStarted
+    url: http://example.com/getting-started
+  - type: ChangeLog
+    url: http://example.com/change-log
+  - type: OpenAPIOverlay
+    url: overlays/de/openapi.yml
+  - type: OpenAPIOverlay
+    url: overlays/fr/openapi.yml
+  - type: OpenAPIOverlay
+    url: overlays/it/openapi.yml
+  - type: OpenAPIOverlay
+    url: overlays/nl/openapi.yml
+  - type: JSONSchemaOverlay
+    url: overlays/de/schema/Product.yml
+  - type: JSONSchemaOverlay
+    url: overlays/de/schema/Meta.yml
+  - type: JSONSchemaOverlay
+    url: overlays/de/schema/Problem.yml
+  - type: JSONSchemaOverlay
+    url: overlays/de/schema/LinksSelf.yml
+  - type: JSONSchemaOverlay
+    url: overlays/de/schema/LinksPagination.yml
+  - type: JSONSchemaOverlay
+    url: overlays/de/schema/WrapperResponseObject.yml
+  - type: JSONSchemaOverlay
+    url: overlays/de/schema/WrapperResponseCollection.yml
+  - type: JSONSchemaOverlay
+    url: overlays/fr/schema/Product.yml
+  - type: JSONSchemaOverlay
+    url: overlays/fr/schema/Meta.yml
+  - type: JSONSchemaOverlay
+    url: overlays/fr/schema/Problem.yml
+  - type: JSONSchemaOverlay
+    url: overlays/fr/schema/LinksSelf.yml
+  - type: JSONSchemaOverlay
+    url: overlays/fr/schema/LinksPagination.yml
+  - type: JSONSchemaOverlay
+    url: overlays/fr/schema/WrapperResponseObject.yml
+  - type: JSONSchemaOverlay
+    url: overlays/fr/schema/WrapperResponseCollection.yml
+  - type: JSONSchemaOverlay
+    url: overlays/it/schema/Product.yml
+  - type: JSONSchemaOverlay
+    url: overlays/it/schema/Meta.yml
+  - type: JSONSchemaOverlay
+    url: overlays/it/schema/Problem.yml
+  - type: JSONSchemaOverlay
+    url: overlays/it/schema/LinksSelf.yml
+  - type: JSONSchemaOverlay
+    url: overlays/it/schema/LinksPagination.yml
+  - type: JSONSchemaOverlay
+    url: overlays/it/schema/WrapperResponseObject.yml
+  - type: JSONSchemaOverlay
+    url: overlays/it/schema/WrapperResponseCollection.yml
+  - type: JSONSchemaOverlay
+    url: overlays/nl/schema/Product.yml
+  - type: JSONSchemaOverlay
+    url: overlays/nl/schema/Meta.yml
+  - type: JSONSchemaOverlay
+    url: overlays/nl/schema/Problem.yml
+  - type: JSONSchemaOverlay
+    url: overlays/nl/schema/LinksSelf.yml
+  - type: JSONSchemaOverlay
+    url: overlays/nl/schema/LinksPagination.yml
+  - type: JSONSchemaOverlay
+    url: overlays/nl/schema/WrapperResponseObject.yml
+  - type: JSONSchemaOverlay
+    url: overlays/nl/schema/WrapperResponseCollection.yml
 common:
   - type: AgenticAccess
     url: agentic-access/products-api-agentic-access.yml
