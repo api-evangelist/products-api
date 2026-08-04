@@ -1,0 +1,14 @@
+{
+  "provider": "products-api",
+  "sources": [
+    "products-api-products-api-openapi.yml"
+  ],
+  "outputs": [
+    "products-api-products-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
