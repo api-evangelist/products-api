@@ -22,7 +22,7 @@ tags:
 created: '2024-12-29'
 modified: '2026-06-23'
 url: http://example.com/apis.json
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: products-api:products-api-products-api
   name: Products Products API
