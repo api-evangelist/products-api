@@ -1,0 +1,164 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Products API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.example.com/products",
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all products for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Products Create Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.example.com/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creating a new product for sending to a recipient."
+        },
+        {
+          "info": {
+            "name": "Products Retrieve Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.example.com/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "1725ff48-ab45-4bb5-9d02-88745177dedb",
+                "type": "path",
+                "description": "The ID of the product to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns the details of a specific product."
+        },
+        {
+          "info": {
+            "name": "Products Update Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.example.com/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "1725ff48-ab45-4bb5-9d02-88745177dedb",
+                "type": "path",
+                "description": "The ID of the product to retrieve."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates a single product."
+        },
+        {
+          "info": {
+            "name": "Products Delete Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.example.com/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "1725ff48-ab45-4bb5-9d02-88745177dedb",
+                "type": "path",
+                "description": "The ID of the product to retrieve."
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes a product."
+        },
+        {
+          "info": {
+            "name": "Products Cancel Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.example.com/products/:productId/cancle",
+            "params": [
+              {
+                "name": "productId",
+                "value": "1725ff48-ab45-4bb5-9d02-88745177dedb",
+                "type": "path",
+                "description": "The ID of the product to retrieve."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "api-key",
+              "value": "{{api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Cancels a single product."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
