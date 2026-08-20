@@ -18,6 +18,9 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/products-api.png
 tags:
   - Application Programming Interface
+  - Product
+tags_raw:
+  - Application Programming Interface
   - Products
 created: '2024-12-29'
 modified: '2026-06-23'
@@ -30,6 +33,8 @@ apis:
   humanURL: https://example.com/apis.yml
   baseURL: http://apis.example.com
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
