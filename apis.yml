@@ -6,14 +6,15 @@ accessModel:
   pricing: freemium
   onboarding: self-serve
   trial: false
-  try_now: true
+  try_now: false
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
+  try_now_blocked_by: example-domain
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  generated: '2026-08-26'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/products-api.png
 tags:
