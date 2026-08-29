@@ -2,6 +2,18 @@ aid: products-api
 name: Products
 kind: template
 description: This is a template APIs.json for a products API, to be used in storytelling, training, and knowledge bases.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
