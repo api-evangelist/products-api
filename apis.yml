@@ -1,12 +1,9 @@
 aid: products-api
 name: Products
-# x-type: index -- a TEMPLATE/demo APIs.json, not a company (roadmap#402, first reported
-# in roadmap#66 two months ago). The record's own description says it exists 'for
-# storytelling, training and knowledge bases'. It was being scored and ranked as a
-# provider on apievangelist.com, this catalog's own domain.
 x-type: index
 kind: template
-description: This is a template APIs.json for a products API, to be used in storytelling, training, and knowledge bases.
+description: This is a template APIs.json for a products API, to be used in storytelling, training, and
+  knowledge bases.
 deliveryModel:
   model: saas
   open_source: false
@@ -35,18 +32,18 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/products-api.png
 tags:
-  - Application Programming Interface
-  - Product
+- Application Programming Interface
+- Product
 tags_raw:
-  - Application Programming Interface
-  - Products
+- Application Programming Interface
+- Products
 created: '2024-12-29'
-modified: '2026-06-23'
+modified: '2026-09-16'
 url: http://example.com/apis.json
 specificationVersion: '0.23'
 apis:
 - aid: products-api:products-api-products-api
-  name: Products Products API
+  name: Products API
   description: Placing and managing of products placed for products.
   humanURL: https://example.com/apis.yml
   baseURL: http://apis.example.com
@@ -156,12 +153,12 @@ apis:
   - type: JSONSchemaOverlay
     url: overlays/nl/schema/WrapperResponseCollection.yml
 common:
-  - type: AgenticAccess
-    url: agentic-access/products-api-agentic-access.yml
-  - type: Authentication
-    url: authentication/products-api-authentication.yml
-  - type: Website
-    url: http://apievangelist.com
+- type: AgenticAccess
+  url: agentic-access/products-api-agentic-access.yml
+- type: Authentication
+  url: authentication/products-api-authentication.yml
+- type: Website
+  url: http://apievangelist.com
 maintainers:
-  - FN: API Evangelist
-    email: info@apievangelist.com
+- FN: API Evangelist
+  email: info@apievangelist.com
