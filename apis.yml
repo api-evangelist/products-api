@@ -1,5 +1,10 @@
 aid: products-api
 name: Products
+# x-type: index -- a TEMPLATE/demo APIs.json, not a company (roadmap#402, first reported
+# in roadmap#66 two months ago). The record's own description says it exists 'for
+# storytelling, training and knowledge bases'. It was being scored and ranked as a
+# provider on apievangelist.com, this catalog's own domain.
+x-type: index
 kind: template
 description: This is a template APIs.json for a products API, to be used in storytelling, training, and knowledge bases.
 deliveryModel:
