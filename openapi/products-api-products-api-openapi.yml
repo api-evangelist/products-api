@@ -1,9 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Products API
-  description: 'This is a template APIs.json for a products API, to be used in storytelling, training, and knowledge bases.
-
-    '
+  description: This is a template APIs.json for a products API, to be used in storytelling, training, and knowledge bases.
   version: 0.1.0
   contact:
     name: API Evangelist
@@ -19,9 +17,7 @@ servers:
   description: Production
 tags:
 - name: Products
-  description: 'Placing and managing of products placed for products.
-
-    '
+  description: Placing and managing of products placed for products.
 paths:
   /products:
     get:
@@ -260,28 +256,30 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   responses:
-    Forbidden:
-      description: Forbidden
+    TooManyRequests:
+      description: Too Many Requests
       headers:
         RateLimit:
           $ref: '#/components/headers/RateLimit'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
       content:
         application/problem+json:
           schema:
             $ref: '#/components/schemas/Problem'
           example:
-            type: https://example.com/errors/forbidden
-            title: Forbidden
-            status: 403
-            detail: Access is forbidden with the provided credentials.
+            type: https://example.com/errors/too-many-requests
+            title: Too Many Requests
+            status: 429
+            detail: You have exceeded the rate limit.
         application/problem+xml:
           schema:
             $ref: '#/components/schemas/Problem'
           example:
-            type: https://example.com/errors/forbidden
-            title: Forbidden
-            status: 403
-            detail: Access is forbidden with the provided credentials.
+            type: https://example.com/errors/too-many-requests
+            title: Too Many Requests
+            status: 429
+            detail: You have exceeded the rate limit.
     Unauthorized:
       description: Unauthorized
       headers:
@@ -304,8 +302,8 @@ components:
             title: Unauthorized
             status: 401
             detail: You do not have the necessary permissions.
-    Conflict:
-      description: Conflict
+    BadRequest:
+      description: Bad Request
       headers:
         RateLimit:
           $ref: '#/components/headers/RateLimit'
@@ -314,18 +312,40 @@ components:
           schema:
             $ref: '#/components/schemas/Problem'
           example:
-            type: https://example.com/errors/conflict
-            title: Conflict
-            status: 409
-            detail: There is a conflict with an existing resource.
+            type: https://example.com/errors/bad-request
+            title: Bad Request
+            status: 400
+            detail: The request is invalid or missing required parameters.
         application/problem+xml:
           schema:
             $ref: '#/components/schemas/Problem'
           example:
-            type: https://example.com/errors/conflict
-            title: Conflict
-            status: 409
-            detail: There is a conflict with an existing resource.
+            type: https://example.com/errors/bad-request
+            title: Bad Request
+            status: 400
+            detail: The request is invalid or missing required parameters.
+    Forbidden:
+      description: Forbidden
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/forbidden
+            title: Forbidden
+            status: 403
+            detail: Access is forbidden with the provided credentials.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/forbidden
+            title: Forbidden
+            status: 403
+            detail: Access is forbidden with the provided credentials.
     NotFound:
       description: Not Found
       headers:
@@ -370,8 +390,8 @@ components:
             title: Internal Server Error
             status: 500
             detail: An unexpected error occurred.
-    BadRequest:
-      description: Bad Request
+    Conflict:
+      description: Conflict
       headers:
         RateLimit:
           $ref: '#/components/headers/RateLimit'
@@ -380,77 +400,19 @@ components:
           schema:
             $ref: '#/components/schemas/Problem'
           example:
-            type: https://example.com/errors/bad-request
-            title: Bad Request
-            status: 400
-            detail: The request is invalid or missing required parameters.
+            type: https://example.com/errors/conflict
+            title: Conflict
+            status: 409
+            detail: There is a conflict with an existing resource.
         application/problem+xml:
           schema:
             $ref: '#/components/schemas/Problem'
           example:
-            type: https://example.com/errors/bad-request
-            title: Bad Request
-            status: 400
-            detail: The request is invalid or missing required parameters.
-    TooManyRequests:
-      description: Too Many Requests
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/too-many-requests
-            title: Too Many Requests
-            status: 429
-            detail: You have exceeded the rate limit.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/too-many-requests
-            title: Too Many Requests
-            status: 429
-            detail: You have exceeded the rate limit.
+            type: https://example.com/errors/conflict
+            title: Conflict
+            status: 409
+            detail: There is a conflict with an existing resource.
   schemas:
-    Meta:
-      type: object
-      description: The metadata for each response.
-      required:
-      - page
-      - totalPages
-      properties:
-        page:
-          type: integer
-          description: The page represented in response.
-          minLength: 1
-          maxLength: 1000
-        pageSize:
-          type: integer
-          minLength: 1
-          maxLength: 1000
-          description: The overall page size limits.
-        totalPages:
-          type: integer
-          description: The total number of pages.
-          minLength: 1
-          maxLength: 1000
-    LinksSelf:
-      type: object
-      description: A link to reference each product.
-      required:
-      - self
-      properties:
-        self:
-          type: string
-          description: A URL to product returned.
-          format: uri
-          minLength: 10
-          maxLength: 2048
     WrapperResponseCollection:
       description: This is a generic request/response wrapper which contains both data and links which serve as hypermedia controls (HATEOAS).
       type: object
@@ -472,6 +434,18 @@ components:
           $ref: '#/components/schemas/LinksPagination'
       xml:
         name: data
+    LinksSelf:
+      type: object
+      description: A link to reference each product.
+      required:
+      - self
+      properties:
+        self:
+          type: string
+          description: A URL to product returned.
+          format: uri
+          minLength: 10
+          maxLength: 2048
     Product:
       type: object
       description: A Schema.org compliant product object.
@@ -524,6 +498,44 @@ components:
           $ref: '#/components/schemas/LinksSelf'
       xml:
         name: data
+    Meta:
+      type: object
+      description: The metadata for each response.
+      required:
+      - page
+      - totalPages
+      properties:
+        page:
+          type: integer
+          description: The page represented in response.
+          minLength: 1
+          maxLength: 1000
+        pageSize:
+          type: integer
+          minLength: 1
+          maxLength: 1000
+          description: The overall page size limits.
+        totalPages:
+          type: integer
+          description: The total number of pages.
+          minLength: 1
+          maxLength: 1000
+    LinksPagination:
+      type: object
+      description: The handling of each page.
+      properties:
+        next:
+          type: string
+          description: The next page in results.
+          format: uri
+          minLength: 10
+          maxLength: 2048
+        prev:
+          type: string
+          description: The previous page in results.
+          format: uri
+          minLength: 10
+          maxLength: 2048
     Problem:
       type: object
       description: This is a Problem Details for HTTP APIs object.
@@ -564,42 +576,7 @@ components:
           example: 400
           minLength: 3
           maxLength: 3
-    LinksPagination:
-      type: object
-      description: The handling of each page.
-      properties:
-        next:
-          type: string
-          description: The next page in results.
-          format: uri
-          minLength: 10
-          maxLength: 2048
-        prev:
-          type: string
-          description: The previous page in results.
-          format: uri
-          minLength: 10
-          maxLength: 2048
-  parameters:
-    ProductId:
-      name: productId
-      in: path
-      required: true
-      description: The ID of the product to retrieve.
-      schema:
-        type: string
-        format: uuid
-        minLength: 36
-        maxLength: 36
-        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      example: 1725ff48-ab45-4bb5-9d02-88745177dedb
   examples:
-    Product:
-      value:
-        sender: Jane Doe
-        recipient: John Doe
-        subjectOf: Meeting Later
-        text: Please meet me at the market.
     ProductCollection:
       value:
         meta:
@@ -633,6 +610,25 @@ components:
           dateReceived: '2018-04-25T18:00:30+01:00'
         links:
           self: https://api.example.com/products
+    Product:
+      value:
+        sender: Jane Doe
+        recipient: John Doe
+        subjectOf: Meeting Later
+        text: Please meet me at the market.
+  parameters:
+    ProductId:
+      name: productId
+      in: path
+      required: true
+      description: The ID of the product to retrieve.
+      schema:
+        type: string
+        format: uuid
+        minLength: 36
+        maxLength: 36
+        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      example: 1725ff48-ab45-4bb5-9d02-88745177dedb
   headers:
     RateLimit:
       description: 'The RateLimit header communicates quota policies. It contains a `limit` to
