@@ -255,163 +255,6 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/unauthorized
-            title: Unauthorized
-            status: 401
-            detail: You do not have the necessary permissions.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/unauthorized
-            title: Unauthorized
-            status: 401
-            detail: You do not have the necessary permissions.
-    TooManyRequests:
-      description: Too Many Requests
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-        Retry-After:
-          $ref: '#/components/headers/Retry-After'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/too-many-requests
-            title: Too Many Requests
-            status: 429
-            detail: You have exceeded the rate limit.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/too-many-requests
-            title: Too Many Requests
-            status: 429
-            detail: You have exceeded the rate limit.
-    NotFound:
-      description: Not Found
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/not-found
-            title: Not Found
-            status: 404
-            detail: The requested resource was not found.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/not-found
-            title: Not Found
-            status: 404
-            detail: The requested resource was not found.
-    Conflict:
-      description: Conflict
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/conflict
-            title: Conflict
-            status: 409
-            detail: There is a conflict with an existing resource.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/conflict
-            title: Conflict
-            status: 409
-            detail: There is a conflict with an existing resource.
-    Forbidden:
-      description: Forbidden
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/forbidden
-            title: Forbidden
-            status: 403
-            detail: Access is forbidden with the provided credentials.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/forbidden
-            title: Forbidden
-            status: 403
-            detail: Access is forbidden with the provided credentials.
-    InternalServerError:
-      description: Internal Server Error
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/internal-server-error
-            title: Internal Server Error
-            status: 500
-            detail: An unexpected error occurred.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/internal-server-error
-            title: Internal Server Error
-            status: 500
-            detail: An unexpected error occurred.
-    BadRequest:
-      description: Bad Request
-      headers:
-        RateLimit:
-          $ref: '#/components/headers/RateLimit'
-      content:
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/bad-request
-            title: Bad Request
-            status: 400
-            detail: The request is invalid or missing required parameters.
-        application/problem+xml:
-          schema:
-            $ref: '#/components/schemas/Problem'
-          example:
-            type: https://example.com/errors/bad-request
-            title: Bad Request
-            status: 400
-            detail: The request is invalid or missing required parameters.
   schemas:
     LinksPagination:
       type: object
@@ -451,7 +294,19 @@ components:
           description: The total number of pages.
           minLength: 1
           maxLength: 1000
-    WrapperResponseObject:
+    LinksSelf:
+      type: object
+      description: A link to reference each product.
+      required:
+      - self
+      properties:
+        self:
+          type: string
+          description: A URL to product returned.
+          format: uri
+          minLength: 10
+          maxLength: 2048
+    WrapperResponseCollection:
       description: This is a generic request/response wrapper which contains both data and links which serve as hypermedia controls (HATEOAS).
       type: object
       required:
@@ -462,9 +317,14 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
         data:
-          $ref: '#/components/schemas/Product'
+          description: The wrapper for a collection is an array of objects.
+          type: array
+          maxItems: 100
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/Product'
         links:
-          $ref: '#/components/schemas/LinksSelf'
+          $ref: '#/components/schemas/LinksPagination'
       xml:
         name: data
     Product:
@@ -503,18 +363,22 @@ components:
           minLength: 10
           maxLength: 2048
           example: http://example.com/image.jpg
-    LinksSelf:
+    WrapperResponseObject:
+      description: This is a generic request/response wrapper which contains both data and links which serve as hypermedia controls (HATEOAS).
       type: object
-      description: A link to reference each product.
       required:
-      - self
+      - meta
+      - data
+      - links
       properties:
-        self:
-          type: string
-          description: A URL to product returned.
-          format: uri
-          minLength: 10
-          maxLength: 2048
+        meta:
+          $ref: '#/components/schemas/Meta'
+        data:
+          $ref: '#/components/schemas/Product'
+        links:
+          $ref: '#/components/schemas/LinksSelf'
+      xml:
+        name: data
     Problem:
       type: object
       description: This is a Problem Details for HTTP APIs object.
@@ -555,58 +419,164 @@ components:
           example: 400
           minLength: 3
           maxLength: 3
-    WrapperResponseCollection:
-      description: This is a generic request/response wrapper which contains both data and links which serve as hypermedia controls (HATEOAS).
-      type: object
-      required:
-      - meta
-      - data
-      - links
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        data:
-          description: The wrapper for a collection is an array of objects.
-          type: array
-          maxItems: 100
-          minItems: 1
-          items:
-            $ref: '#/components/schemas/Product'
-        links:
-          $ref: '#/components/schemas/LinksPagination'
-      xml:
-        name: data
-  parameters:
-    ProductId:
-      name: productId
-      in: path
-      required: true
-      description: The ID of the product to retrieve.
-      schema:
-        type: string
-        format: uuid
-        minLength: 36
-        maxLength: 36
-        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
-      example: 1725ff48-ab45-4bb5-9d02-88745177dedb
+  responses:
+    NotFound:
+      description: Not Found
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/not-found
+            title: Not Found
+            status: 404
+            detail: The requested resource was not found.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/not-found
+            title: Not Found
+            status: 404
+            detail: The requested resource was not found.
+    TooManyRequests:
+      description: Too Many Requests
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+        Retry-After:
+          $ref: '#/components/headers/Retry-After'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/too-many-requests
+            title: Too Many Requests
+            status: 429
+            detail: You have exceeded the rate limit.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/too-many-requests
+            title: Too Many Requests
+            status: 429
+            detail: You have exceeded the rate limit.
+    Conflict:
+      description: Conflict
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/conflict
+            title: Conflict
+            status: 409
+            detail: There is a conflict with an existing resource.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/conflict
+            title: Conflict
+            status: 409
+            detail: There is a conflict with an existing resource.
+    BadRequest:
+      description: Bad Request
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/bad-request
+            title: Bad Request
+            status: 400
+            detail: The request is invalid or missing required parameters.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/bad-request
+            title: Bad Request
+            status: 400
+            detail: The request is invalid or missing required parameters.
+    Unauthorized:
+      description: Unauthorized
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/unauthorized
+            title: Unauthorized
+            status: 401
+            detail: You do not have the necessary permissions.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/unauthorized
+            title: Unauthorized
+            status: 401
+            detail: You do not have the necessary permissions.
+    InternalServerError:
+      description: Internal Server Error
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/internal-server-error
+            title: Internal Server Error
+            status: 500
+            detail: An unexpected error occurred.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/internal-server-error
+            title: Internal Server Error
+            status: 500
+            detail: An unexpected error occurred.
+    Forbidden:
+      description: Forbidden
+      headers:
+        RateLimit:
+          $ref: '#/components/headers/RateLimit'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/forbidden
+            title: Forbidden
+            status: 403
+            detail: Access is forbidden with the provided credentials.
+        application/problem+xml:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://example.com/errors/forbidden
+            title: Forbidden
+            status: 403
+            detail: Access is forbidden with the provided credentials.
   examples:
-    ProductCollection:
-      value:
-        meta:
-          page: 1
-          pageSize: 10
-          totalPages: 2
-        data:
-        - id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
-          sender: Jane Doe
-          recipient: John Doe
-          subjectOf: Meeting Later
-          text: Please meet me at the market.
-          dateSent: '2018-04-25T18:00:30+01:00'
-          dateReceived: '2018-04-25T18:00:30+01:00'
-        links:
-          self: https://api.example.com/products
-          next: https://api.example.com/products?page=2
     SingleProduct:
       value:
         meta:
@@ -629,20 +599,37 @@ components:
         recipient: John Doe
         subjectOf: Meeting Later
         text: Please meet me at the market.
-  headers:
-    Retry-After:
-      description: "The Retry-After header indicates how long the user agent should wait before making a follow-up request. \nThe value is in seconds and can be an integer or a date in the future. \nIf the value is an integer, it indicates the number of seconds to wait. \nIf the value is a date, it indicates the time at which the user agent should make a follow-up request. \n"
+    ProductCollection:
+      value:
+        meta:
+          page: 1
+          pageSize: 10
+          totalPages: 2
+        data:
+        - id: efdbb9d1-02c2-4bc3-afb7-6788d8782b1e
+          sender: Jane Doe
+          recipient: John Doe
+          subjectOf: Meeting Later
+          text: Please meet me at the market.
+          dateSent: '2018-04-25T18:00:30+01:00'
+          dateReceived: '2018-04-25T18:00:30+01:00'
+        links:
+          self: https://api.example.com/products
+          next: https://api.example.com/products?page=2
+  parameters:
+    ProductId:
+      name: productId
+      in: path
+      required: true
+      description: The ID of the product to retrieve.
       schema:
         type: string
-        minLength: 10
-        maxLength: 250
-      examples:
-        integer:
-          value: '120'
-          summary: Retry after 120 seconds
-        date:
-          value: Fri, 31 Dec 2021 23:59:59 GMT
-          summary: Retry after the specified date
+        format: uuid
+        minLength: 36
+        maxLength: 36
+        pattern: ^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$
+      example: 1725ff48-ab45-4bb5-9d02-88745177dedb
+  headers:
     RateLimit:
       description: 'The RateLimit header communicates quota policies. It contains a `limit` to
 
@@ -656,6 +643,19 @@ components:
         minLength: 10
         maxLength: 250
         example: limit=10, remaining=0, reset=10
+    Retry-After:
+      description: "The Retry-After header indicates how long the user agent should wait before making a follow-up request. \nThe value is in seconds and can be an integer or a date in the future. \nIf the value is an integer, it indicates the number of seconds to wait. \nIf the value is a date, it indicates the time at which the user agent should make a follow-up request. \n"
+      schema:
+        type: string
+        minLength: 10
+        maxLength: 250
+      examples:
+        integer:
+          value: '120'
+          summary: Retry after 120 seconds
+        date:
+          value: Fri, 31 Dec 2021 23:59:59 GMT
+          summary: Retry after the specified date
   securitySchemes:
     apiKeys:
       type: apiKey
