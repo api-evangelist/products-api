@@ -18,10 +18,14 @@ front_door_ai:
   - payments-api
   - persons-api
   - power-tools
+  - proxy
   - use-cases
   inherited_from: null
+  alias_of: null
   verdict: scored
   score: null
+  band: null
+  band_label: null
   host_score: 11
   density: null
   words: 896
