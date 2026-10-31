@@ -1,4 +1,4 @@
-# Products API (api-evangelist-products)
+# products-api
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,97 +64,22 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-A template APIs.json for a products API, used in storytelling, training, and knowledge
-bases. It is intentionally boring — list, create, read, update, delete, and cancel a
-product — so it can serve as a clean canvas for demonstrating API artifacts and the
-relationships between them.
+## products-api on APIs.io
 
-**APIs.json:** [`apis.yml`](apis.yml)
+Everything profiled for products-api is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/products-api/](https://apis.io/providers/products-api/)** — or go straight to one of the APIs or properties below.
 
-## Repository layout
+## API Evangelist rating
 
-```
-apis.yml                      # APIs.json index — registers every artifact below
-openapi/                      # canonical OpenAPI 3.1 description
-collections/                  # Postman + Open Collection
-schema/                       # standalone JSON Schemas (+ index)
-overlays/                     # locale-first overlays for the OpenAPI and schemas
-finops/  plans/  rate-limits/ # operational artifacts
-```
+Not yet rated. See [apis.io/providers/products-api/](https://apis.io/providers/products-api/).
 
-## Artifacts
+## How this profile is made
 
-| Type | File |
-|------|------|
-| OpenAPI | [`openapi/products-api-openapi.yml`](openapi/products-api-openapi.yml) |
-| Postman Collection | [`collections/products-api.postman_collection.json`](collections/products-api.postman_collection.json) |
-| Open Collection | [`collections/products-api.opencollection.json`](collections/products-api.opencollection.json) |
-| JSON Schema (index) | [`schema/index.yml`](schema/index.yml) |
-| JSON Schemas | `schema/Product.yml`, `Meta.yml`, `Problem.yml`, `LinksSelf.yml`, `LinksPagination.yml`, `WrapperResponseObject.yml`, `WrapperResponseCollection.yml` |
-| FinOps | [`finops/products-api-finops.yml`](finops/products-api-finops.yml) |
-| Plans | [`plans/products-api-plans.yml`](plans/products-api-plans.yml) |
-| Rate Limits | [`rate-limits/products-api-rate-limits.yml`](rate-limits/products-api-rate-limits.yml) |
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-Every one of these is registered as a property in [`apis.yml`](apis.yml) so the repo is
-discoverable as a single machine-readable index.
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for products-api: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-## Schemas
+## Open an issue
 
-The data models do not live inside the OpenAPI document — they are broken out into
-standalone JSON Schema files under [`schema/`](schema/), each with its own `$id` and each
-valid on its own. [`schema/index.yml`](schema/index.yml) `$ref`s them together. Keeping the
-models standalone means the same `Product.yml` can be referenced by the OpenAPI, a
-validation pipeline, a code generator, and a documentation site without any one of those
-purposes owning the definition.
-
-## Overlays
-
-[Overlays](https://spec.openapis.org/overlay/latest.html) apply targeted changes on top of a
-base document **without forking it**. They are organized **locale-first** — one folder per
-language, with the OpenAPI overlay and the schema overlays for that language together:
-
-```
-overlays/
-  de/                         # German
-    openapi.yml               # overlay for openapi/products-api-openapi.yml
-    schema/
-      Product.yml             # overlay for schema/Product.yml
-      Meta.yml
-      ...
-  fr/  it/  nl/               # French, Italian, Dutch (same shape)
-```
-
-Each overlay `extends` the canonical raw URL of the artifact it modifies on the `main`
-branch, and only rewrites human-readable fields (summaries, descriptions, error messages) —
-never the structure. The base is the single source of truth; an overlay is a presentation
-layer over it.
-
-### Applying an overlay
-
-Using the [openapi-overlays](https://www.npmjs.com/package/openapi-overlays) CLI (or any
-Overlay-aware tool):
-
-```sh
-# produce the German OpenAPI document
-npx openapi-overlays apply \
-  openapi/products-api-openapi.yml \
-  overlays/de/openapi.yml > products-api-openapi.de.yml
-
-# produce the German Product schema
-npx openapi-overlays apply \
-  schema/Product.yml \
-  overlays/de/schema/Product.yml > Product.de.yml
-```
-
-## Tags
-
-- Application Programming Interface
-- Products
-
-## Maintainers
-
-**API Evangelist** — info@apievangelist.com · [apievangelist.com](http://apievangelist.com)
-
-## License
-
-Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC-BY-NC-SA-4.0).
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/products-api/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
